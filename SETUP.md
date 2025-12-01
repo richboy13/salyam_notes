@@ -7,7 +7,7 @@ GitHub Actions может иметь ограничения из-за прави
 ## Шаг 1: Активация через настройки репозитория
 
 1. Перейдите в настройки репозитория:
-   **https://github.com/richboy13/Islam/settings/pages**
+   **https://github.com/richboy13/salyam_notes/settings/pages**
 
 2. В разделе "Build and deployment":
    - **Source**: выберите `Deploy from a branch`
@@ -20,7 +20,10 @@ GitHub Actions может иметь ограничения из-за прави
 ## Шаг 2: Проверка
 
 После сохранения настроек сайт будет доступен по адресу:
-**https://richboy13.github.io/Islam/**
+**https://richboy13.github.io/salyam_notes/**
+
+Слайды будут доступны по адресу:
+**https://richboy13.github.io/salyam_notes/wudu-dua/**
 
 ## Альтернатива: Если нужно использовать docs папку
 
@@ -40,8 +43,8 @@ GitHub Actions может иметь ограничения из-за прави
 
 ## Структура файлов
 
-- `index.html` - основной файл слайдов (в корне)
-- `docs/index.html` - копия файла (в папке docs)
+- `index.html` - главная страница (в корне)
+- `wudu-dua/index.html` - слайды про дуа при омовении
 - `.nojekyll` - файл для отключения Jekyll обработки
 
 ## Если сайт не работает
