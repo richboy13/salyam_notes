@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полное ДУА при омовении</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin: 20px 0;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 0;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+            color: #2c3e50;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            page-break-before: always;
+            transition: all 0.3s ease;
+        }
+
+        h2:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        h2:first-of-type {
+            page-break-before: auto;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 1.5em;
+            margin-bottom: 0.6em;
+            color: #34495e;
+            padding-left: 10px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        h3:hover {
+            padding-left: 15px;
+            color: #2980b9;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            color: #34495e;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .callout {
+            margin: 1.5em 0;
+            padding: 20px;
+            border-left: 5px solid;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .callout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .callout-info {
+            border-left-color: #3498db;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+
+        .callout-note {
+            border-left-color: #7f8c8d;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+
+        .callout-tip {
+            border-left-color: #27ae60;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .callout-warning {
+            border-left-color: #f39c12;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        }
+
+        .callout-success {
+            border-left-color: #27ae60;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .callout-danger {
+            border-left-color: #e74c3c;
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        }
+
+        .callout-quote {
+            border-left-color: #9b59b6;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        }
+
+        .callout-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .callout-content {
+            margin-left: 0;
+        }
+
+        .callout-content blockquote {
+            margin: 15px 0;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-left: 3px solid rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            font-style: italic;
+        }
+
+        .callout-content blockquote p {
+            margin-bottom: 0.5em;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.5em 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            margin: 0;
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e3f2fd;
+            transition: background-color 0.2s ease;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            background-color: #f4f4f4;
+            padding: 3px 6px;
+            border-radius: 4px;
+            color: #e83e8c;
+        }
+
+        pre {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5em 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+
+        ul,
+        ol {
+            margin-left: 2em;
+            margin-bottom: 1.2em;
+        }
+
+        li {
+            margin-bottom: 0.8em;
+            line-height: 1.8;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+            margin: 2em 0;
+        }
+
+        mark {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            h2 {
+                page-break-before: always;
+            }
+
+            h2:first-of-type {
+                page-break-before: auto;
+            }
+
+            .callout,
+            table {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+                padding: 12px;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            .callout {
+                padding: 15px;
+                margin: 1em 0;
+            }
+
+            .callout-title {
+                font-size: 1em;
+            }
+
+            .table-wrapper {
+                margin: 1em -10px;
+                border-radius: 0;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th,
+            td {
+                padding: 10px 8px;
+            }
+
+            pre {
+                padding: 15px;
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            h1 {
+                font-size: 1.75em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+                padding: 10px;
+            }
+
+            h3 {
+                font-size: 1.1em;
+            }
+
+            .callout {
+                padding: 12px;
+            }
+
+            th,
+            td {
+                padding: 8px 6px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🕌 Полное ДУА при омовении</h1>
+        <div class="callout callout-info">
+            <div class="callout-title">ℹ️ Информация</div>
+            <div class="callout-content">
+                <p>Общая информация</p>
+                <p>Вуду (омовение) — это не только физическое очищение, но и духовное. Каждая часть тела, которую мы омываем, связана с определёнными действиями и качествами. Чтение дуа при омовении помогает нам осознанно подходить к очищению и просить у Аллаха очищения не только тела, но и сердца, языка, рук и ног от грехов.</p>
+            </div>
+        </div>
+        <h2>📊 Структура омовения с дуа</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Этап</th>
+                        <th>Часть тела</th>
+                        <th>Суть дуа</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>Намерение + Бисмилля</td>
+                        <td>Очищение от грехов и слабостей</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>Кисти рук</td>
+                        <td>Очищение рук от грехов, помощь и садака</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>Рот</td>
+                        <td>Очищение языка, правдивость, доброе слово</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>Нос</td>
+                        <td>Тонкое чутьё к истине, защита от вредного</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>Лицо</td>
+                        <td>Свет имана, чистый взгляд, улыбка-садака</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6</strong></td>
+                        <td>Руки до локтей</td>
+                        <td>Поступки к довольству Аллаха, полезные дела</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7</strong></td>
+                        <td>Голова</td>
+                        <td>Очищение мыслей, мудрость, правильные решения</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8</strong></td>
+                        <td>Уши</td>
+                        <td>Слушать истину, Коран, уберечь от харама</td>
+                    </tr>
+                    <tr>
+                        <td><strong>9</strong></td>
+                        <td>Ноги</td>
+                        <td>Шаги к мечети и благу, стойкость в намазе</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2>🔍 Детальное изучение дуа при омовении</h2>
+        <h3>1️⃣ Намерение + Бисмилля</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p><strong>Бисмилля.</strong></p>
+                <p>О Аллах, очисти меня от грехов и слабостей, так как Ты — Аль-Куддус (Всесвятой, Чистый).</p>
+                <p>Даруй чистоту телу, сердцу и делам.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит:</p>
+                <blockquote>
+                    <p>«Поистине, Аллах любит кающихся и любит очищающихся»</p>
+                    <p>(Сура Аль-Бакара, 222 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой момент</p>
+                <p><mark>Начинаем омовение с именем Аллаха и просьбой о полном очищении — не только физическом, но и духовном</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>2️⃣ Омывая кисти рук</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Аль-Латиф (Мягкий, Заботливый),</p>
+                <p>очисти мои руки от грехов и сделай их руками добра, помощи и садака.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Хадис</p>
+                <p>Пророк ﷺ сказал:</p>
+                <blockquote>
+                    <p>«Аллах помогает рабу, пока раб помогает своему брату»</p>
+                    <p>(Тирмизи)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Руки — инструмент наших действий. Просим, чтобы они использовались только для добра и помощи</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>3️⃣ Омывая рот</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Ас-Саддик (Правдивейший) и Аль-Хаккам (Тот, Кто выносит истины),</p>
+                <p>очисти мой язык.</p>
+                <p>Даруй мне говорить правду, доброе слово и удержи от лжи и споров.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит:</p>
+                <blockquote>
+                    <p>«Говорите людям благое»</p>
+                    <p>(Сура Аль-Бакара, 83 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Хадис</p>
+                <p>Пророк ﷺ сказал:</p>
+                <blockquote>
+                    <p>«Кто верит в Аллаха и в Судный День, пусть говорит благое или молчит»</p>
+                    <p>(Бухари)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Язык — один из самых опасных органов. Просим очищения и защиты от лжи, сплетен и пустых слов</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>4️⃣ Очищая нос</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Аль-Басыр (Всевидящий) и Аль-Хаади (Ведущий к истине),</p>
+                <p>даруй мне тонкое чутьё к истине,</p>
+                <p>уберёг от всего грязного и вредного.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Хадис</p>
+                <p>Пророк ﷺ сказал:</p>
+                <blockquote>
+                    <p>«Тщательно очищайте нос» (о фитре)</p>
+                    <p>(Бухари)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Нос — орган обоняния и дыхания. Просим тонкого чутья к истине и защиты от всего вредного</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>5️⃣ Омывая лицо</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Ан-Нур (Свет),</p>
+                <p>освети моё лицо светом имана.</p>
+                <p>Сделай мой взгляд чистым, а улыбку — садака.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Хадис</p>
+                <p>Пророк ﷺ сказал:</p>
+                <blockquote>
+                    <p>«Улыбка брату — садака»</p>
+                    <p>(Тирмизи)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит:</p>
+                <blockquote>
+                    <p>«Аллах — Свет небес и земли»</p>
+                    <p>(Сура Ан-Нур, 35 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Лицо отражает наше внутреннее состояние. Просим света имана, чтобы оно сияло верой и добротой</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>6️⃣ Омывая руки до локтей</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Аль-Му'айин (Помогающий) и Аль-Ваххаб (Дарующий),</p>
+                <p>направь мои поступки к тому, что приносит Твоё довольство.</p>
+                <p>Ты — Аш-Шакур (Высоко ценящий добро),</p>
+                <p>пусть мои дела будут чистыми и полезными в этом мире и Ахира.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит:</p>
+                <blockquote>
+                    <p>«Кто сделает добро весом в пылинку — увидит его»</p>
+                    <p>(Сура Аз-Зальзаля, 7 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Хадис</p>
+                <p>Пророк ﷺ сказал:</p>
+                <blockquote>
+                    <p>«Самые любимые дела у Аллаха — постоянные, даже если их мало»</p>
+                    <p>(Бухари)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Руки — символ наших действий. Просим, чтобы все наши дела были направлены на довольство Аллаха</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>7️⃣ Протирая голову</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Аль-Алим (Всезнающий) и Аль-Хаким (Мудрый),</p>
+                <p>очисти мои мысли.</p>
+                <p>Даруй ясность, мудрость, правильные решения и баракат в семье, работе и поклонении.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит в дуа Ибрахима:</p>
+                <blockquote>
+                    <p>«Господь мой! Даруй мне мудрость и присоедини к праведным»</p>
+                    <p>(Сура Аш-Шуара, 83 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит:</p>
+                <blockquote>
+                    <p>«Он дарует мудрость кому пожелает»</p>
+                    <p>(Сура Аль-Бакара, 269 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Голова — место наших мыслей и решений. Просим мудрости, ясности и правильного понимания</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>8️⃣ Протирая уши</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Ас-Самии' (Всеслышащий),</p>
+                <p>даруй мне слушать истину, Коран и всё, что приносит пользу.</p>
+                <p>Убереги мои уши от харама и сплетен.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит:</p>
+                <blockquote>
+                    <p>«Те, кто слушают лучшее из сказанного»</p>
+                    <p>(Сура Аз-Зумар, 18 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Уши — орган слуха. Просим, чтобы мы слышали только истину, Коран и полезное, избегая запретного</mark></p>
+            </div>
+        </div>
+        <hr>
+        <h3>9️⃣ Омывая ноги</h3>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, Ты — Аль-Хади (Ведущий),</p>
+                <p>направь мои шаги к мечети и благим делам.</p>
+                <p>Убереги меня от путей греха и сомнительного.</p>
+                <p>Даруй мне стойкость стоять перед Тобой на намазе.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Хадис</p>
+                <p>Пророк ﷺ сказал:</p>
+                <blockquote>
+                    <p>«Каждый шаг в мечеть поднимает степень и стирает грех»</p>
+                    <p>(Муслим)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой урок</p>
+                <p><mark>Ноги ведут нас по жизненному пути. Просим, чтобы наши шаги были направлены к мечети и благу</mark></p>
+            </div>
+        </div>
+        <h2>🌙 Финальная мольба после завершения вуду</h2>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Сунна после омовения</div>
+            <div class="callout-content">
+                <p><strong>Ашхаду ан ла иляха илля Ллаху, вахдаху ла шарику ля.</strong></p>
+                <p><strong>Ва ашхаду анна Мухаммадан абдуху ва расулюх.</strong></p>
+                <p>(Свидетельствую, что нет божества, кроме Аллаха, Единого, у Которого нет сотоварища. И свидетельствую, что Мухаммад — Его раб и посланник.)</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Хадис</p>
+                <p>Пророк ﷺ сказал:</p>
+                <blockquote>
+                    <p>«Для того, кто скажет это после вуду — открываются врата Рая»</p>
+                    <p>(Муслим)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Дополнительная дуа</div>
+            <div class="callout-content">
+                <p>О Аллах, сделай меня из очищенных и из тех, кто часто кается.</p>
+            </div>
+        </div>
+        <div class="callout callout-quote">
+            <div class="callout-title">💬 Цитата</div>
+            <div class="callout-content">
+                <p>Коран</p>
+                <p>Аллах ﷻ говорит:</p>
+                <blockquote>
+                    <p>«Аллах любит очищающихся»</p>
+                    <p>(Сура Аль-Бакара, 222 аят)</p>
+                </blockquote>
+            </div>
+        </div>
+        <div class="callout callout-tip">
+            <div class="callout-title">💡 Совет</div>
+            <div class="callout-content">
+                <p>Ключевой момент</p>
+                <p><mark>После завершения омовения произносим шахаду и просим Аллаха сделать нас из числа очищенных и кающихся</mark></p>
+            </div>
+        </div>
+        <h2>🎯 Визуальная схема омовения с дуа</h2>
+        <div class="callout callout-info">
+            <div class="callout-title">ℹ️ Информация</div>
+            <div class="callout-content">
+                <p>Структура духовного омовения</p>
+                <p>Наглядное представление связи между физическим очищением и духовными просьбами</p>
+            </div>
+        </div>
+        <h3>📊 Иерархическая схема</h3>
+        <pre><code>🕌 Вуду (Омовение) с дуа
+│
+├── 🌿 Намерение + Бисмилля
+│   └── Очищение от грехов и слабостей
+│
+├── 🤲 Кисти рук
+│   └── Руки добра, помощи и садака
+│
+├── 💬 Рот
+│   └── Правдивость, доброе слово
+│
+├── 👃 Нос
+│   └── Тонкое чутьё к истине
+│
+├── 😊 Лицо
+│   └── Свет имана, чистый взгляд
+│
+├── ✋ Руки до локтей
+│   └── Поступки к довольству Аллаха
+│
+├── 🧠 Голова
+│   └── Мудрость, ясность, правильные решения
+│
+├── 👂 Уши
+│   └── Слушать истину и Коран
+│
+└── 🦶 Ноги
+    └── Шаги к мечети и благу</code></pre>
+        <h3>🔄 Схема связи частей тела и качеств</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Часть тела</th>
+                        <th>Духовное качество</th>
+                        <th>Просьба</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Руки</strong></td>
+                        <td>Действия</td>
+                        <td>Добро, помощь, садака</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Рот</strong></td>
+                        <td>Слова</td>
+                        <td>Правда, доброе слово</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Нос</strong></td>
+                        <td>Чутьё</td>
+                        <td>Распознавание истины</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Лицо</strong></td>
+                        <td>Выражение</td>
+                        <td>Свет имана, улыбка</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Голова</strong></td>
+                        <td>Мысли</td>
+                        <td>Мудрость, ясность</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Уши</strong></td>
+                        <td>Слух</td>
+                        <td>Истина, Коран</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ноги</strong></td>
+                        <td>Путь</td>
+                        <td>Мечеть, благие дела</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h3>🎨 Схема духовного очищения</h3>
+        <div class="callout callout-note">
+            <div class="callout-title">📝 Примечание</div>
+            <div class="callout-content">
+                <p>🔴 Физическое очищение</p>
+                <p>- Омовение водой</p>
+                <p>- Удаление грязи</p>
+                <p>- Подготовка к намазу</p>
+            </div>
+        </div>
+        <div class="callout callout-note">
+            <div class="callout-title">📝 Примечание</div>
+            <div class="callout-content">
+                <p>🟡 Духовное очищение</p>
+                <p>- Дуа при омовении</p>
+                <p>- Просьба очищения от грехов</p>
+                <p>- Осознанность действий</p>
+            </div>
+        </div>
+        <div class="callout callout-note">
+            <div class="callout-title">📝 Примечание</div>
+            <div class="callout-content">
+                <p>🟢 Результат</p>
+                <p>- Чистое тело</p>
+                <p>- Чистое сердце</p>
+                <p>- Готовность к поклонению</p>
+            </div>
+        </div>
+        <div class="callout callout-success">
+            <div class="callout-title">✅ Успех</div>
+            <div class="callout-content">
+                <p>✅ Итог</p>
+                <p>- Полное очищение</p>
+                <p>- Близость к Аллаху</p>
+                <p>- Открытие врат Рая</p>
+            </div>
+        </div>
+        <h2>📋 Итоговые выводы</h2>
+        <h3>🌿 Омовение — не только физическое очищение</h3>
+        <p>- <strong>Вуду</strong> — это духовная практика, а не просто ритуал</p>
+        <p>- <strong>Каждая часть тела</strong> связана с определёнными качествами и действиями</p>
+        <p>- <strong>Дуа при омовении</strong> помогает осознанно подходить к очищению</p>
+        <p>- <strong>Просьбы к Аллаху</strong> делают омовение актом поклонения</p>
+        <h3>💬 Связь частей тела и духовных качеств</h3>
+        <p>- <strong>Руки</strong> — действия, помощь, садака</p>
+        <p>- <strong>Рот</strong> — слова, правдивость, доброе слово</p>
+        <p>- <strong>Лицо</strong> — выражение, свет имана, улыбка</p>
+        <p>- <strong>Голова</strong> — мысли, мудрость, решения</p>
+        <p>- <strong>Уши</strong> — слух, истина, Коран</p>
+        <p>- <strong>Ноги</strong> — путь, мечеть, благие дела</p>
+        <h3>📖 Практические советы</h3>
+        <p>- Читать дуа при каждом этапе омовения</p>
+        <p>- Понимать смысл каждого дуа</p>
+        <p>- Произносить шахаду после завершения вуду</p>
+        <p>- Просить Аллаха сделать нас из очищенных</p>
+        <p>- Помнить, что омовение — это поклонение</p>
+    </div>
+</body>
+
+</html>
+

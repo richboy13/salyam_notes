@@ -1,0 +1,176 @@
+{
+  "main": {
+    "id": "795176ec8996abd5",
+    "type": "split",
+    "children": [
+      {
+        "id": "12029bd36aa1fa7c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4e35bbfb386ccd4e",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Новая вкладка"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3de4e81684a1916b",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "5b192c2a69a63d92",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical",
+            "autoReveal": false
+          },
+          "icon": "lucide-folder-closed",
+          "title": "Файловый менеджер"
+        }
+      },
+      {
+        "id": "fc882fd7b9044cc9",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          },
+          "icon": "lucide-search",
+          "title": "Поиск"
+        }
+      },
+      {
+        "id": "f6594d7a5f41fd43",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          },
+          "icon": "lucide-tags",
+          "title": "Теги"
+        }
+      },
+      {
+        "id": "ff1146191462dc00",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {},
+          "icon": "lucide-bookmark",
+          "title": "Закладки"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "834604a981def651",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "d0a398849a3be31d",
+        "type": "leaf",
+        "state": {
+          "type": "calendar",
+          "state": {},
+          "icon": "calendar-with-checkmark",
+          "title": "Calendar"
+        }
+      },
+      {
+        "id": "13e35a8ba5df4605",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "Dairy/Дневник/Распорядок дня.pdf",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-coming-in",
+          "title": "Обратные ссылки"
+        }
+      },
+      {
+        "id": "70a172a609b315be",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "Dairy/Дневник/Распорядок дня.pdf",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          },
+          "icon": "links-going-out",
+          "title": "Исходящие ссылки"
+        }
+      },
+      {
+        "id": "4534be973f51dfd8",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "Dairy/Дневник/Распорядок дня.pdf"
+          },
+          "icon": "lucide-list",
+          "title": "Структура"
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Создать новую базу": false,
+      "obsidian-markdown-formatting-assistant-plugin:Open Markdown Formatting Assistant": false,
+      "templater-obsidian:Templater": false,
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "random-note:Открыть случайную заметку": false,
+      "audio-recorder:Начать/остановить запись": false,
+      "workspaces:Пространства": false
+    }
+  },
+  "active": "4e35bbfb386ccd4e",
+  "lastOpenFiles": [
+    "Dairy/ДАРС/Терпение, Лечение, Таваккуль, Зухд.md",
+    "Dairy/ДАРС/Отличия ашʿаритов от матуридитов.md",
+    "Без названия.md",
+    "Без названия 1.md",
+    "Без названия",
+    "Social Media/YouTube/Идеи.md",
+    "Do IT/Работа/Cargo/запуск приложения на сервере.md",
+    "Dairy/Дневник/Март 2024. То что, мне помогает..md",
+    "Dairy/Дневник/Распорядок дня.pdf",
+    "Dairy/Входяшие/из книги \"Никогда не ешьте в одиночку\".md",
+    "Отрывки из книги.md"
+  ]
+}

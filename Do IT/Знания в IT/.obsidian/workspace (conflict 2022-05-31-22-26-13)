@@ -1,0 +1,138 @@
+{
+  "main": {
+    "id": "b05ef48321690799",
+    "type": "split",
+    "children": [
+      {
+        "id": "7e14c6bee24d397e",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/ДЕНЬГИ/ПРАВИЛЬНОЕ УТРО.md",
+            "mode": "source",
+            "backlinks": false,
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3ce7224efd9a1744",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "135f313b229c85d6",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      },
+      {
+        "id": "9822052452b5729c",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "ebdd0fa3ef65c21a",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "1c6f7c0582406a8b",
+        "type": "leaf",
+        "state": {
+          "type": "starred",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "2ac1f2f2d27e20dc",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "fdea0a65d250e738",
+        "type": "leaf",
+        "state": {
+          "type": "calendar",
+          "state": {}
+        }
+      },
+      {
+        "id": "921b232732f3488a",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/ДЕНЬГИ/ПРАВИЛЬНОЕ УТРО.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "4cf1be3dec75197a",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/ДЕНЬГИ/ПРАВИЛЬНОЕ УТРО.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "4b7197369843d26f",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/ДЕНЬГИ/ПРАВИЛЬНОЕ УТРО.md"
+          }
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "active": "7e14c6bee24d397e",
+  "lastOpenFiles": [
+    "БАЗА ЗНАНИЙ/ДЕНЬГИ/ПРАВИЛЬНОЕ УТРО.md",
+    "БАЗА ЗНАНИЙ/Здоровье/Гормоны/Эндорфины снижают кортизол.md",
+    "ПРОЕКТЫ/Контент/Опубликовано/Рилс. Как не залипать в тиктоке.md",
+    "!Куаныш Рыспай.md",
+    "БАЗА ЗНАНИЙ/Книги/Шарма. Клуб 5 утра.md",
+    "БАЗА ЗНАНИЙ/Книги/Клуб 5 утра/Абсолютная Концентрация Внимания (АКВ).md",
+    "БАЗА ЗНАНИЙ/Книги/Новоселов. Женщина/Иерархия доминирования.md",
+    "БАЗА ЗНАНИЙ/Здоровье/Гормоны/Порно на фоне книги атомная бомба.md",
+    "БАЗА ЗНАНИЙ/Психология/ПСИХОЛОГИЯ 🧠.md",
+    "БАЗА ЗНАНИЙ/Психология/ЗАВИСИМОСТИ.md"
+  ]
+}

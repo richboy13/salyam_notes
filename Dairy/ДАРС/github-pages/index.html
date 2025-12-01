@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salyam Notes - Личные заметки по изучению Ислама</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.7;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            max-width: 700px;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-content {
+            color: #34495e;
+            line-height: 1.8;
+        }
+        .section-content p {
+            margin-bottom: 12px;
+        }
+        .section-content ul {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+        .section-content li {
+            margin-bottom: 8px;
+        }
+        .important-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #f39c12;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .important-box p {
+            margin-bottom: 10px;
+        }
+        .important-box ul {
+            margin-left: 20px;
+        }
+        .link-card {
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        .link-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .link-description {
+            font-size: 0.95em;
+            opacity: 0.95;
+        }
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 8px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .footer p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .dua {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-style: italic;
+            color: #2c3e50;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .section-title {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🕌 salyam_notes</h1>
+        <p class="subtitle">Добро пожаловать!</p>
+        
+        <div class="section">
+            <div class="section-content">
+                <p>Здесь я собираю свои личные заметки, понимания и конспекты по изучению Ислама.</p>
+                <p>Это мой путь — путь человека, который стремится понять религию глубже и практиковать её в повседневной жизни, ин ша Аллах.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">🌙</span>
+                <span>О проекте</span>
+            </div>
+            <div class="section-content">
+                <p>Этот репозиторий — моя личная коллекция материалов по Исламу:</p>
+                <ul>
+                    <li>конспекты уроков, книг и лекций;</li>
+                    <li>размышления над аятами, хадисами и темами акиды;</li>
+                    <li>полезные выдержки, помогающие укреплять иман;</li>
+                    <li>структурированные заметки, к которым я сам возвращаюсь.</li>
+                </ul>
+                <p>Я делюсь ими в надежде, что они окажутся полезными и другим изучающим.</p>
+            </div>
+        </div>
+
+        <div class="important-box">
+            <div class="section-title" style="margin-bottom: 10px;">
+                <span class="emoji">🤲</span>
+                <span>Важно</span>
+            </div>
+            <div class="section-content">
+                <p><strong>Я не являюсь учёным, имамом, преподавателем или человеком, дающим фетвы.</strong></p>
+                <p>Я — обычный мусульманин, который:</p>
+                <ul>
+                    <li>изучает Ислам,</li>
+                    <li>старается систематизировать знания,</li>
+                    <li>применяет их в жизни,</li>
+                    <li>и делится тем, что понял на своём уровне.</li>
+                </ul>
+                <p>Все заметки — моё субъективное понимание, и если в них есть ошибка, прошу Аллаха простить и наставить на истину.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">👨‍👩‍👦</span>
+                <span>Моя мотивация</span>
+            </div>
+            <div class="section-content">
+                <p>Я женат, и Аллах одарил меня сыном.</p>
+                <p>Семья — мой аманат, и мне хочется лучшего для них: духовности, мира, безопасности и правильного пути.</p>
+                <p>Я стремлюсь быть:</p>
+                <ul>
+                    <li>проводником хорошего,</li>
+                    <li>флагманом своей семьи на пути к Аллаху,</li>
+                    <li>тем, кто оберегает, защищает, наставляет,</li>
+                    <li>и примером — насколько это в моих силах.</li>
+                </ul>
+                <p>Мои знания и заметки — часть этого пути.</p>
+                <p>Хочу расти сам, чтобы семья росла вместе со мной.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">🧭</span>
+                <span>Обо мне кратко</span>
+            </div>
+            <div class="section-content">
+                <p>Меня зовут Наиль, я живу в Алматы.</p>
+                <p>Я — руководитель и основатель клуба боевых искусств «Мастерская Наиля Валитова».</p>
+                <p>Изучаю Ислам, стараюсь применять знания в семье, работе и жизни.</p>
+                <p>Этот проект — отражение моего стремления к духовному росту и пользе.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="emoji">📚</span>
+                <span>Доступные материалы</span>
+            </div>
+            <a href="wudu-dua/" class="link-card">
+                <div class="link-title">💧 Полное ДУА при омовении</div>
+                <div class="link-description">Интерактивные слайды с дуа для каждого этапа вуду</div>
+            </a>
+        </div>
+
+        <div class="dua">
+            <p><strong>🤍 Дуа</strong></p>
+            <p>Пусть Аллах сделает этот путь искренним и полезным.</p>
+            <p>Пусть эти записи принесут пользу мне, моей семье и всем, кто их прочитает.</p>
+            <p style="margin-top: 15px;"><strong>Амин.</strong></p>
+        </div>
+
+        <div class="footer">
+            <p>Автор: <a href="https://www.instagram.com/nv_notes" target="_blank">@nv_notes</a></p>
+            <p style="margin-top: 15px; font-style: italic; color: #667eea;">
+                <strong>Салям алейкум ва рахматуллахи ва баракатух</strong><br>
+                <span style="font-size: 0.9em;">Мир вам, милость Аллаха и Его благословение</span>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

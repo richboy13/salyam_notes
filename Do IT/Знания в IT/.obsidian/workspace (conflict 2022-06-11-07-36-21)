@@ -1,0 +1,138 @@
+{
+  "main": {
+    "id": "b05ef48321690799",
+    "type": "split",
+    "children": [
+      {
+        "id": "534f3c15fe937068",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/Здоровье/ГОРМОНЫ.md",
+            "mode": "source",
+            "backlinks": false,
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9385b945328524f9",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "3c354afffe5e89cc",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      },
+      {
+        "id": "e10e4236fe97f430",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "82651ad4e73f179b",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "e95c15d03637a552",
+        "type": "leaf",
+        "state": {
+          "type": "starred",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "c0bd74720da032df",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "3a962c89b2c985bc",
+        "type": "leaf",
+        "state": {
+          "type": "calendar",
+          "state": {}
+        }
+      },
+      {
+        "id": "f42f7dd631c61948",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/Здоровье/ГОРМОНЫ.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "b4a84fd1ac7b6695",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/Здоровье/ГОРМОНЫ.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "3a71435a3d51da8f",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "БАЗА ЗНАНИЙ/Здоровье/ГОРМОНЫ.md"
+          }
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "active": "534f3c15fe937068",
+  "lastOpenFiles": [
+    "БАЗА ЗНАНИЙ/Здоровье/ГОРМОНЫ.md",
+    "_на сортировке/Состояние и мысли.md",
+    "Я/Мои правила - заповеди.md",
+    "_на сортировке/МОИ ЧЕЛЛЕНДЖИ.md",
+    "!Куаныш Рыспай.md",
+    "_на сортировке/ЧЕК ЛИСТ ИТОГИ МЕСЯЦА.md",
+    "_на сортировке/Ошибка Коллекционера.md",
+    "_на сортировке/Ресурс внимания.md",
+    "_на сортировке/ИНСАЙТЫ.md",
+    "2022-06-07.md"
+  ]
+}

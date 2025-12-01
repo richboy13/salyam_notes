@@ -1,0 +1,138 @@
+{
+  "main": {
+    "id": "b05ef48321690799",
+    "type": "split",
+    "children": [
+      {
+        "id": "b8cefb1b13ca2ffb",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "ПРОЕКТЫ/Мои прогревы.md",
+            "mode": "source",
+            "backlinks": false,
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "74140dc7b2fd2520",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "b79f434d954b236b",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      },
+      {
+        "id": "d85604b6e02acf66",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "54bc6563e402410d",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "a5a235b751574b7d",
+        "type": "leaf",
+        "state": {
+          "type": "starred",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "dcbeaaa3f512b4a6",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "78a53ee4d706dd20",
+        "type": "leaf",
+        "state": {
+          "type": "calendar",
+          "state": {}
+        }
+      },
+      {
+        "id": "b9c913e240b00849",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "ПРОЕКТЫ/Мои прогревы.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "43267c7ee473b24d",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "ПРОЕКТЫ/Мои прогревы.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "5bb7422d8be4f796",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "ПРОЕКТЫ/Мои прогревы.md"
+          }
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "active": "b8cefb1b13ca2ffb",
+  "lastOpenFiles": [
+    "ПРОЕКТЫ/Мои прогревы.md",
+    "БАЗА ЗНАНИЙ/!Обработано/Соцсети делают нас слабее.md",
+    "БАЗА ЗНАНИЙ/Учителя/Лазарев/Мясо животных.md",
+    "БАЗА ЗНАНИЙ/ДЕНЬГИ/ИНСТАГРАММ/ПРОГРЕВ.md",
+    "ПРОЕКТЫ/Контент/Мой инстаграмм.md",
+    "БАЗА ЗНАНИЙ/Темы/Соцсети.md",
+    "!Куаныш Рыспай.md",
+    "БАЗА ЗНАНИЙ/Здоровье/Гормоны/Стресс и болезни.md",
+    "ПРОЕКТЫ/Рыспай Консалт/Ключевики по Геткурс.md",
+    "БАЗА ЗНАНИЙ/Книги/Клуб 5 утра/Если вам хотчется сдатся вы ближе всего у цели.md"
+  ]
+}

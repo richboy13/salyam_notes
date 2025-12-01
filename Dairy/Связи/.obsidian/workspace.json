@@ -1,0 +1,194 @@
+{
+  "main": {
+    "id": "8f72ae23ffe921bc",
+    "type": "split",
+    "children": [
+      {
+        "id": "9f088d8ab9456956",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "78a38b13baa4eb64",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "120252910ea90b9e",
+    "type": "split",
+    "children": [
+      {
+        "id": "1903c6ad50076222",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "791bc81652a2d624",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "05665ee877fb9225",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "35d1d61bdeafcb10",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "adf114da213a578e",
+    "type": "split",
+    "children": [
+      {
+        "id": "1a5e90c29294c226",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ff9374be0913908c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "96a3c470cc50d0b1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a6b3a5829f865d7b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "fe5f5becc2ba4f7e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Входяшие/nv_masters club.md"
+              }
+            }
+          },
+          {
+            "id": "03f6231480489ec9",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "8b68f79b4cc23f8d",
+            "type": "leaf",
+            "state": {
+              "type": "side-panel-control-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-markdown-formatting-assistant-plugin:Open Markdown Formatting Assistant": false
+    }
+  },
+  "active": "791bc81652a2d624",
+  "lastOpenFiles": [
+    "Входяшие/\"Никогда не ешьте в одиночку\".md",
+    "Входяшие/Отрывки из книги.md",
+    "\"Мозг\" Связи. Описание.md",
+    "Входяшие/nv_masters club. План, задачи, идеи.md",
+    "Входяшие/Do IT. План, задачи, идеи.md",
+    "Входяшие/План, задачи, идеи по nv_masters club.md",
+    "Входяшие/План, задачи, идеи по Do IT.md",
+    "Описание.md",
+    "Без названия.md",
+    "План, задачи, идеи по Do IT.md",
+    "План, задачи, идеи по Do OT.md",
+    "План, задачи, идеи по nv_masters club 1.md",
+    "План, задачи, идеи по nv_masters club.md",
+    "Входяшие/nv_masters club.md",
+    "nv_notes/Dairy/Связи",
+    "nv_notes/Dairy/Новая папка",
+    "nv_notes/Dairy/Входяшие/То что, мне помогает..md",
+    "nv_notes/Dairy/Входяшие/из книги \"Никогда не ешьте в одиночку\".md",
+    "nv_notes/Do IT/Работа/Cargo/запуск приложения на сервере.md",
+    "Без названия.canvas",
+    "связи.md",
+    "план.md",
+    "nv_notes/Do IT/Знания/Обработано/Работа с Базой Данных Postgres.md",
+    "nv_notes/Do IT/Знания/Обработано/Команды git.md",
+    "nv_notes/Do IT/Знания/Обработано/Команды в терминале.md",
+    "nv_notes/Dairy/Входяшие/что где когда.md",
+    "сериал.md",
+    "сериалы.md",
+    "nv_notes/Do IT/Знания/Обработано/Руководство по использованию SSH.md"
+  ]
+}

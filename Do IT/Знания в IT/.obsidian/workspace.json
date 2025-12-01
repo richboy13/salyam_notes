@@ -1,0 +1,201 @@
+{
+  "main": {
+    "id": "86d23677ea42d9b5",
+    "type": "split",
+    "children": [
+      {
+        "id": "f9c2d34fc5ddb72f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a54f3772b57d9df1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Do IT/Описание.md",
+                "mode": "source",
+                "backlinks": false,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5cc971f783fcb2c3",
+    "type": "split",
+    "children": [
+      {
+        "id": "91cb6f6648a444dd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d0fedb71e61ac17a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2568bbccd7b11c57",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f9b245532b34507f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8514e3fcb882ec89",
+    "type": "split",
+    "children": [
+      {
+        "id": "db18d5f2a543b1a8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9488fc597b21e188",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Do IT/Описание.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "e3772d45f14fe0c7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Do IT/Описание.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ffacc59fba869c1f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "59a88370a8a07ae5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Do IT/Описание.md"
+              }
+            }
+          },
+          {
+            "id": "48cc62adb4801954",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "a05af3d4309f538b",
+            "type": "leaf",
+            "state": {
+              "type": "side-panel-control-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "obsidian-markdown-formatting-assistant-plugin:Open Markdown Formatting Assistant": false,
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "random-note:Открыть случайную заметку": false,
+      "audio-recorder:Начать/остановить запись": false,
+      "workspaces:Пространства": false
+    }
+  },
+  "active": "a54f3772b57d9df1",
+  "lastOpenFiles": [
+    "Do IT/Работа/WhatsApp Bot/Маркер доступа Token.md",
+    "Do IT/Работа/Cargo/запуск приложения на сервере.md",
+    "Do IT/Знания/Обработано/Команды git.md",
+    "Do IT/Знания/Обработано/Команды в терминале.md",
+    "Dairy/Описание.md",
+    "Do IT/Знания/Описание.md",
+    "Do IT/Описание.md",
+    "nv_masters club/Описание.md",
+    "Do IT/Знания/_Resours/Шаблоны/Шаблон 1.md",
+    "Do IT/Знания/_Resours/Шаблоны",
+    "Do IT/Знания/Обработано",
+    "Do IT/Знания/Входяшие",
+    "Do IT/Знания/_Resours",
+    "Do IT/Знания/Welcome.md",
+    "Do IT/Знания",
+    "Без названия.canvas",
+    "Do IT/Работа/Cargo/Данные ботов на сервере.md",
+    "Do IT/Работа/Cargo",
+    "Do IT/Работа/WhatsApp Bot",
+    "nv_masters club/_Resours/Шаблоны/Шаблон 1.md",
+    "nv_masters club/_Resours/Шаблоны",
+    "nv_masters club/Обработано",
+    "nv_masters club/Входяшие",
+    "Do IT/_Resours/Шаблоны/Шаблон 1.md",
+    "Dairy/_Resours/Шаблоны/Шаблон 1.md",
+    "Do IT/Welcome.md",
+    "Dairy/Welcome.md",
+    "nv_masters club/Welcome.md",
+    "_Resours/Шаблоны/Шаблон 1.md"
+  ]
+}
