@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полное ДУА при омовении - Слайды</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slides-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 40px;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .slide-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 0;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 1em;
+            color: #2c3e50;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 1em;
+            color: #34495e;
+            text-align: center;
+        }
+
+        .callout {
+            margin: 1.5em 0;
+            padding: 25px;
+            border-left: 6px solid;
+            border-radius: 12px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .callout-info {
+            border-left-color: #3498db;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+
+        .callout-success {
+            border-left-color: #27ae60;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .callout-quote {
+            border-left-color: #9b59b6;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        }
+
+        .callout-tip {
+            border-left-color: #27ae60;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .callout-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .callout-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .callout-content p {
+            margin-bottom: 0.8em;
+        }
+
+        .callout-content blockquote {
+            margin: 15px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+            font-size: 1.05em;
+        }
+
+        mark {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10000;
+            pointer-events: auto;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #667eea;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            min-width: 120px;
+            min-height: 44px;
+            position: relative;
+            z-index: 10001;
+            pointer-events: auto;
+        }
+
+        .nav-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .nav-btn:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        .slide-indicator {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            color: #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .slide-number {
+            font-size: 1.1em;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+
+        .dua-text {
+            font-size: 1.3em;
+            line-height: 2;
+            text-align: center;
+            margin: 20px 0;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .arabic-text {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 20px 0;
+            direction: rtl;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .brand-footer {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .brand-footer:hover {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+
+        .brand-link:hover {
+            color: #667eea;
+        }
+
+        .instagram-icon {
+            width: 18px;
+            height: 18px;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .instagram-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .brand-text {
+            font-size: 0.85em;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                padding-bottom: 100px;
+            }
+
+            .slide-content {
+                padding: 30px;
+                margin-bottom: 80px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            h3 {
+                font-size: 1.4em;
+            }
+
+            .callout {
+                padding: 20px;
+            }
+
+            .callout-content {
+                font-size: 1em;
+            }
+
+            .dua-text {
+                font-size: 1.1em;
+            }
+
+            .navigation {
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                flex-wrap: nowrap;
+                justify-content: center;
+                gap: 10px;
+                width: calc(100% - 40px);
+                max-width: 400px;
+            }
+
+            .brand-footer {
+                bottom: 80px;
+                padding: 5px 12px;
+                gap: 6px;
+            }
+
+            .brand-link {
+                font-size: 0.8em;
+            }
+
+            .instagram-icon {
+                width: 16px;
+                height: 16px;
+            }
+
+            .brand-text {
+                font-size: 0.8em;
+            }
+
+            .nav-btn {
+                padding: 14px 20px;
+                font-size: 0.95em;
+                min-width: 110px;
+                min-height: 48px;
+                flex: 1;
+            }
+
+            .slide-indicator {
+                top: 15px;
+                right: 15px;
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                padding: 15px;
+                padding-bottom: 100px;
+            }
+
+            .slide-content {
+                padding: 20px;
+                margin-bottom: 80px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            h3 {
+                font-size: 1.2em;
+            }
+
+            .callout {
+                padding: 15px;
+            }
+
+            .dua-text {
+                font-size: 1em;
+            }
+
+            .navigation {
+                bottom: 15px;
+                width: calc(100% - 30px);
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 12px 16px;
+                font-size: 0.85em;
+                min-width: 100px;
+                min-height: 44px;
+            }
+
+            .brand-footer {
+                bottom: 75px;
+                padding: 4px 10px;
+                gap: 5px;
+            }
+
+            .brand-link {
+                font-size: 0.75em;
+            }
+
+            .instagram-icon {
+                width: 14px;
+                height: 14px;
+            }
+
+            .brand-text {
+                font-size: 0.75em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-indicator">
+        <span class="slide-number">1 / 11</span>
+    </div>
+
+    <div class="slides-container">
+        <!-- Слайд 1: Титульный -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1>🕌 Полное ДУА при омовении</h1>
+                <div class="callout callout-info">
+                    <div class="callout-title">ℹ️ Информация</div>
+                    <div class="callout-content">
+                        <p>Вуду (омовение) — это не только физическое очищение, но и духовное. Каждая часть тела,
+                            которую мы омываем, связана с определёнными действиями и качествами.</p>
+                        <p>Чтение дуа при омовении помогает нам осознанно подходить к очищению и просить у Аллаха
+                            очищения не только тела, но и сердца, языка, рук и ног от грехов.</p>
+                    </div>
+                </div>
+                <p class="intro-text">Используйте стрелки ← → для навигации</p>
+            </div>
+        </div>
+
+        <!-- Слайд 2: Намерение + Бисмилля -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>1️⃣ Намерение + Бисмилля</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text"><strong>Бисмилля.</strong></p>
+                        <p class="dua-text">О Аллах, очисти меня от грехов и слабостей, так как Ты — Аль-Куддус
+                            (Всесвятой, Чистый).</p>
+                        <p class="dua-text">Даруй чистоту телу, сердцу и делам.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Поистине, Аллах любит кающихся и любит очищающихся»</p>
+                            <p>(Сура Аль-Бакара, 222 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Совет</div>
+                    <div class="callout-content">
+                        <p><mark>Начинаем омовение с именем Аллаха и просьбой о полном очищении — не только физическом,
+                                но и духовном</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 3: Кисти рук -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>2️⃣ Омывая кисти рук</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Аль-Латиф (Мягкий, Заботливый),</p>
+                        <p class="dua-text">очисти мои руки от грехов и сделай их руками добра, помощи и садака.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Хадис</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Аллах помогает рабу, пока раб помогает своему брату»</p>
+                            <p>(Тирмизи)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Руки — инструмент наших действий. Просим, чтобы они использовались только для добра и
+                                помощи</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 4: Рот -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>3️⃣ Омывая рот</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Ас-Саддик (Правдивейший) и Аль-Хаккам (Тот, Кто выносит
+                            истины),</p>
+                        <p class="dua-text">очисти мой язык.</p>
+                        <p class="dua-text">Даруй мне говорить правду, доброе слово и удержи от лжи и споров.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Говорите людям благое»</p>
+                            <p>(Сура Аль-Бакара, 83 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Хадис</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Кто верит в Аллаха и в Судный День, пусть говорит благое или молчит»</p>
+                            <p>(Бухари)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Язык — один из самых опасных органов. Просим очищения и защиты от лжи, сплетен и пустых
+                                слов</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 5: Нос -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>4️⃣ Очищая нос</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Аль-Басыр (Всевидящий) и Аль-Хаади (Ведущий к истине),</p>
+                        <p class="dua-text">даруй мне тонкое чутьё к истине,</p>
+                        <p class="dua-text">уберёг от всего грязного и вредного.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Хадис</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Тщательно очищайте нос» (о фитре)</p>
+                            <p>(Бухари)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Нос — орган обоняния и дыхания. Просим тонкого чутья к истине и защиты от всего
+                                вредного</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 6: Лицо -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>5️⃣ Омывая лицо</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Ан-Нур (Свет),</p>
+                        <p class="dua-text">освети моё лицо светом имана.</p>
+                        <p class="dua-text">Сделай мой взгляд чистым, а улыбку — садака.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Хадис</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Улыбка брату — садака»</p>
+                            <p>(Тирмизи)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Аллах — Свет небес и земли»</p>
+                            <p>(Сура Ан-Нур, 35 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Лицо отражает наше внутреннее состояние. Просим света имана, чтобы оно сияло верой и
+                                добротой</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 7: Руки до локтей -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>6️⃣ Омывая руки до локтей</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Аль-Му'айин (Помогающий) и Аль-Ваххаб (Дарующий),</p>
+                        <p class="dua-text">направь мои поступки к тому, что приносит Твоё довольство.</p>
+                        <p class="dua-text">Ты — Аш-Шакур (Высоко ценящий добро),</p>
+                        <p class="dua-text">пусть мои дела будут чистыми и полезными в этом мире и Ахира.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Кто сделает добро весом в пылинку — увидит его»</p>
+                            <p>(Сура Аз-Зальзаля, 7 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Хадис</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Самые любимые дела у Аллаха — постоянные, даже если их мало»</p>
+                            <p>(Бухари)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Руки — символ наших действий. Просим, чтобы все наши дела были направлены на довольство
+                                Аллаха</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 8: Голова -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>7️⃣ Протирая голову</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Аль-Алим (Всезнающий) и Аль-Хаким (Мудрый),</p>
+                        <p class="dua-text">очисти мои мысли.</p>
+                        <p class="dua-text">Даруй ясность, мудрость, правильные решения и баракат в семье, работе и
+                            поклонении.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Господь мой! Даруй мне мудрость и присоедини к праведным»</p>
+                            <p>(Сура Аш-Шуара, 83 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Он дарует мудрость кому пожелает»</p>
+                            <p>(Сура Аль-Бакара, 269 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Голова — место наших мыслей и решений. Просим мудрости, ясности и правильного
+                                понимания</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 9: Уши -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>8️⃣ Протирая уши</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Ас-Самии' (Всеслышащий),</p>
+                        <p class="dua-text">даруй мне слушать истину, Коран и всё, что приносит пользу.</p>
+                        <p class="dua-text">Убереги мои уши от харама и сплетен.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Те, кто слушают лучшее из сказанного»</p>
+                            <p>(Сура Аз-Зумар, 18 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Уши — орган слуха. Просим, чтобы мы слышали только истину, Коран и полезное, избегая
+                                запретного</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 10: Ноги -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>9️⃣ Омывая ноги</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, Ты — Аль-Хади (Ведущий),</p>
+                        <p class="dua-text">направь мои шаги к мечети и благим делам.</p>
+                        <p class="dua-text">Убереги меня от путей греха и сомнительного.</p>
+                        <p class="dua-text">Даруй мне стойкость стоять перед Тобой на намазе.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Хадис</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Каждый шаг в мечеть поднимает степень и стирает грех»</p>
+                            <p>(Муслим)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Урок</div>
+                    <div class="callout-content">
+                        <p><mark>Ноги ведут нас по жизненному пути. Просим, чтобы наши шаги были направлены к мечети и
+                                благу</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 11: Финальная мольба -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🌙 Финальная мольба после завершения вуду</h2>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Сунна после омовения</div>
+                    <div class="callout-content">
+                        <p class="arabic-text">أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ</p>
+                        <p class="dua-text"><strong>Ашхаду ан ла иляха илля Ллаху, вахдаху ла шарику ля.</strong></p>
+                        <p class="arabic-text">وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</p>
+                        <p class="dua-text"><strong>Ва ашхаду анна Мухаммадан абдуху ва расулюх.</strong></p>
+                        <p style="margin-top: 20px; text-align: center;">(Свидетельствую, что нет божества, кроме
+                            Аллаха, Единого, у Которого нет сотоварища. И свидетельствую, что Мухаммад — Его раб и
+                            посланник.)</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Хадис</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Для того, кто скажет это после вуду — открываются врата Рая»</p>
+                            <p>(Муслим)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-success">
+                    <div class="callout-title">✅ Дополнительная дуа</div>
+                    <div class="callout-content">
+                        <p class="dua-text">О Аллах, сделай меня из очищенных и из тех, кто часто кается.</p>
+                    </div>
+                </div>
+                <div class="callout callout-quote">
+                    <div class="callout-title">💬 Коран</div>
+                    <div class="callout-content">
+                        <blockquote>
+                            <p>«Аллах любит очищающихся»</p>
+                            <p>(Сура Аль-Бакара, 222 аят)</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="callout callout-tip">
+                    <div class="callout-title">💡 Ключевой момент</div>
+                    <div class="callout-content">
+                        <p><mark>После завершения омовения произносим шахаду и просим Аллаха сделать нас из числа
+                                очищенных и кающихся</mark></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand-footer">
+        <a href="https://www.instagram.com/nv_notes" target="_blank" rel="noopener noreferrer" class="brand-link">
+            <div class="instagram-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#instagram-gradient)" />
+                    <circle cx="12" cy="12" r="5" fill="white" />
+                    <circle cx="17.5" cy="6.5" r="1.5" fill="white" />
+                    <defs>
+                        <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#833AB4;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#E1306C;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#FCAF45;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="brand-text">@nv_notes</span>
+        </a>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn">← Назад</button>
+        <button class="nav-btn" id="nextBtn">Вперёд →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const slideIndicator = document.querySelector('.slide-number');
+
+        function showSlide(n) {
+            // Прокручиваем текущий слайд в начало перед переключением
+            if (slides[currentSlide]) {
+                slides[currentSlide].scrollTop = 0;
+            }
+
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+
+            // Прокручиваем новый слайд в начало и прокручиваем контейнер слайдов
+            setTimeout(() => {
+                slides[currentSlide].scrollTop = 0;
+                document.querySelector('.slides-container').scrollTop = 0;
+            }, 10);
+
+            slideIndicator.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Инициализация кнопок навигации с поддержкой touch событий
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Функция для безопасной обработки кликов и тапов
+        function setupButton(button, callback) {
+            if (!button) return;
+
+            // Клик мыши
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                callback();
+            });
+
+            // Touch события для мобильных устройств
+            button.addEventListener('touchend', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                callback();
+            }, { passive: false });
+
+            // Дополнительная обработка touchstart для лучшей совместимости
+            button.addEventListener('touchstart', function (e) {
+                e.stopPropagation();
+            }, { passive: true });
+        }
+
+        // Настройка кнопок
+        if (prevBtn && nextBtn) {
+            setupButton(prevBtn, previousSlide);
+            setupButton(nextBtn, nextSlide);
+        }
+
+        // Предотвращаем конфликт свайпов с кнопками
+        const navigation = document.querySelector('.navigation');
+        if (navigation) {
+            navigation.addEventListener('touchstart', function (e) {
+                e.stopPropagation();
+            }, { passive: true });
+
+            navigation.addEventListener('touchend', function (e) {
+                e.stopPropagation();
+            }, { passive: true });
+        }
+
+        // Навигация клавиатурой
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                previousSlide();
+            }
+        });
+
+        // Свайп для мобильных устройств
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', function (e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function (e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+
+            // Проверяем, что это горизонтальный свайп, а не вертикальный скролл
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                if (deltaX < -50) {
+                    nextSlide();
+                } else if (deltaX > 50) {
+                    previousSlide();
+                }
+            }
+        }
+
+        // Предотвращаем случайные клики при скролле
+        let isScrolling = false;
+        document.addEventListener('touchmove', function () {
+            isScrolling = true;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function () {
+            setTimeout(function () {
+                isScrolling = false;
+            }, 100);
+        }, { passive: true });
+    </script>
+</body>
+
+</html>
