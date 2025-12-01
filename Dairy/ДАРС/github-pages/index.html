@@ -15,10 +15,108 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            padding-top: 90px;
             line-height: 1.7;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .header-logo:hover {
+            color: #667eea;
+        }
+
+        .header-logo-icon {
+            font-size: 1.3em;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-link {
+            text-decoration: none;
+            color: #5a6c7d;
+            font-size: 0.9em;
+            font-weight: 400;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header-link:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .header-author {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: #5a6c7d;
+            font-size: 0.85em;
+            font-weight: 400;
+            padding: 6px 12px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header-author:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .header-author-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-author:hover .header-author-icon {
+            opacity: 1;
+        }
+
+        .header-author-icon svg {
+            width: 100%;
+            height: 100%;
         }
         .container {
             background: white;
@@ -151,6 +249,37 @@
             color: #2c3e50;
         }
         @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .header {
+                padding: 12px 20px;
+            }
+
+            .header-logo {
+                font-size: 1em;
+            }
+
+            .header-nav {
+                gap: 10px;
+            }
+
+            .header-link {
+                font-size: 0.85em;
+                padding: 6px 12px;
+            }
+
+            .header-author {
+                font-size: 0.8em;
+                padding: 5px 10px;
+            }
+
+            .header-author-icon {
+                width: 14px;
+                height: 14px;
+            }
+
             .container {
                 padding: 30px;
             }
@@ -161,9 +290,73 @@
                 font-size: 1.2em;
             }
         }
+
+        @media (max-width: 480px) {
+            body {
+                padding-top: 75px;
+            }
+
+            .header {
+                padding: 10px 15px;
+            }
+
+            .header-left {
+                gap: 12px;
+            }
+
+            .header-logo {
+                font-size: 0.9em;
+            }
+
+            .header-logo-icon {
+                font-size: 1.2em;
+            }
+
+            .header-nav {
+                gap: 8px;
+            }
+
+            .header-link {
+                font-size: 0.8em;
+                padding: 5px 10px;
+                display: none;
+            }
+
+            .header-author {
+                font-size: 0.75em;
+                padding: 4px 8px;
+            }
+
+            .header-author-icon {
+                width: 12px;
+                height: 12px;
+            }
+        }
     </style>
 </head>
 <body>
+    <header class="header">
+        <div class="header-left">
+            <a href="https://richboy13.github.io/salyam_notes/" class="header-logo">
+                <span class="header-logo-icon">🕌</span>
+                <span>salyam_notes</span>
+            </a>
+        </div>
+        <nav class="header-nav">
+            <a href="https://richboy13.github.io/salyam_notes/" class="header-link">Главная</a>
+            <a href="https://www.instagram.com/nv_notes" target="_blank" rel="noopener noreferrer" class="header-author">
+                <div class="header-author-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.5" fill="none" />
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" fill="none" />
+                        <circle cx="17.5" cy="6.5" r="1.25" fill="currentColor" />
+                    </svg>
+                </div>
+                <span>@nv_notes</span>
+            </a>
+        </nav>
+    </header>
+
     <div class="container">
         <h1>🕌 salyam_notes</h1>
         <p class="subtitle">Добро пожаловать!</p>
@@ -262,8 +455,7 @@
         </div>
 
         <div class="footer">
-            <p>Автор: <a href="https://www.instagram.com/nv_notes" target="_blank">@nv_notes</a></p>
-            <p style="margin-top: 15px; font-style: italic; color: #667eea;">
+            <p style="font-style: italic; color: #667eea;">
                 <strong>Салям алейкум ва рахматуллахи ва баракатух</strong><br>
                 <span style="font-size: 0.9em;">Мир вам, милость Аллаха и Его благословение</span>
             </p>
