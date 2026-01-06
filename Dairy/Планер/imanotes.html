@@ -432,16 +432,6 @@
 
             return (
                 <div className="max-w-6xl mx-auto p-4 md:p-8">
-                    {/* Обложка / Cover */}
-                    <div className="mb-6 rounded-[2rem] overflow-hidden shadow-xl bg-white border-b-4 border-emerald-700 animate-fade-in relative group">
-                        <img 
-                            src="IMANotes_logo.png" 
-                            className="w-full max-h-[160px] md:max-h-[200px] object-contain mx-auto py-4 transform transition-transform duration-700 group-hover:scale-105" 
-                            alt="IMANotes Cover" 
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/5 to-transparent pointer-events-none"></div>
-                    </div>
-
                     {/* Header Section with Layered Tab */}
                     <div className="relative mb-16">
                         {/* 1. The "Base" (Green part / Shadow) */}
@@ -486,9 +476,16 @@
                                     <span className="text-[9px] md:text-[10px] font-black text-amber-400/80 uppercase tracking-tighter leading-none mt-1">{currentMonthShort}</span>
                                     <span className="text-xl md:text-2xl font-black text-white leading-none">{currentDayNumber}</span>
                                 </div>
-                                <div className="flex-1">
-                                    <h1 className="text-xl md:text-3xl font-black text-emerald-900 tracking-tight leading-tight">Начни день с Бисмиллях</h1>
-                                    <p className="text-[11px] md:text-sm text-emerald-700 font-bold italic opacity-90 leading-snug">{motivationForDay}</p>
+                                <div className="flex-1 flex flex-col items-center md:items-start">
+                                    <img 
+                                        src="IMANotes_logo.png" 
+                                        className="h-16 md:h-24 object-contain -my-4 md:-my-6 drop-shadow-sm hover:scale-105 transition-transform duration-500 cursor-pointer" 
+                                        alt="IMANotes"
+                                        onClick={() => setViewMode('week')}
+                                    />
+                                    <p className="text-[10px] md:text-sm text-emerald-700 font-bold italic opacity-80 leading-tight mt-1 text-center md:text-left">
+                                        {motivationForDay}
+                                    </p>
                                 </div>
                         </div>
                     </header>
