@@ -604,11 +604,11 @@
                     <div className="relative mb-16">
                         {/* 0. Top Logo Tab (Emerged from top) */}
                         <div className="absolute -top-10 left-8 md:left-12 z-10">
-                            <div className="bg-emerald-700 pb-8 pt-2 px-6 rounded-t-[2rem] shadow-lg border-x border-t border-emerald-600/30 transform transition-all duration-500 hover:-translate-y-1 group/logo cursor-pointer"
+                            <div className="bg-emerald-700 pb-8 pt-2 px-6 rounded-t-[2rem] shadow-lg border-x border-t border-emerald-600/30 transform skew-x-[15deg] origin-bottom transition-all duration-500 hover:-translate-y-1 group/logo cursor-pointer"
                                  onClick={() => setViewMode('week')}>
                                 <img 
                                     src="IMANotes_logo.png" 
-                                    className="h-10 md:h-12 object-contain brightness-0 invert drop-shadow-md" 
+                                    className="h-10 md:h-12 object-contain brightness-0 invert drop-shadow-md transform -skew-x-[15deg]" 
                                     alt="IMANotes"
                                 />
                             </div>
@@ -616,34 +616,35 @@
 
                         {/* 1. The "Base" (Green part / Shadow) */}
                         <div className="absolute -bottom-4 inset-x-0 h-full bg-emerald-700 rounded-[2.5rem] z-0 shadow-xl">
-                            {/* Дополнительный объем справа для вкладок */}
                             <div className="absolute bottom-0 right-0 w-2/3 h-12 bg-emerald-700 rounded-br-[2.5rem]"></div>
                         </div>
                         
                         {/* 2. The "Mode Switcher" (Hanging Tabs) */}
-                        <div className="absolute right-6 -bottom-7 z-10 flex items-end gap-1">
-                            {[
-                                { id: 'week', label: 'Неделя' },
-                                { id: 'month', label: 'Месяц' },
-                                { id: 'stats', label: 'Статистика' }
-                            ].map((tab) => {
-                                const isActive = viewMode === tab.id;
-                                return (
-                                    <button 
-                                        key={tab.id}
-                                        onClick={() => setViewMode(tab.id)}
-                                        className={`
-                                            px-6 py-2 rounded-b-[1.5rem] text-[10px] font-black uppercase tracking-widest transition-all duration-300
-                                            ${isActive 
-                                                ? 'bg-emerald-700 text-white pt-4 shadow-lg border-x border-b border-emerald-600' 
-                                                : 'bg-emerald-50 text-emerald-800 hover:bg-white pt-2 shadow-md'
-                                            }
-                                        `}
-                                    >
-                                        {tab.label}
-                                    </button>
-                                );
-                            })}
+                        <div className="absolute right-0 -bottom-7 z-10 flex justify-end pr-0 md:pr-2">
+                            <div className="flex bg-emerald-700 pt-4 pb-1 px-1 rounded-b-[2rem] transform -skew-x-[15deg] origin-top gap-0 relative">
+                                {[
+                                    { id: 'week', label: 'Неделя' },
+                                    { id: 'month', label: 'Месяц' },
+                                    { id: 'stats', label: 'Статистика' }
+                                ].map((tab, idx) => {
+                                    const isActive = viewMode === tab.id;
+                                    return (
+                                        <button 
+                                            key={tab.id}
+                                            onClick={() => setViewMode(tab.id)}
+                                            className={`
+                                                relative px-6 py-2 rounded-b-[1.5rem] text-[10px] font-black uppercase tracking-widest transition-all duration-300
+                                                ${isActive 
+                                                    ? 'bg-white text-emerald-900 z-30 shadow-[-10px_0_15px_rgba(0,0,0,0.1)] pt-3 scale-105 translate-y-0.5' 
+                                                    : 'text-emerald-50 hover:bg-emerald-600 z-20'
+                                                }
+                                            `}
+                                        >
+                                            <span className="inline-block transform skew-x-[15deg]">{tab.label}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
                         </div>
 
                         {/* 3. The "Main Body" (White part) */}
