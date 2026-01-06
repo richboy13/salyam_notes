@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Начни день с Бисмиллях</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Roboto, -apple-system, sans-serif; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
+        .calendar-day { min-height: 100px; transition: all 0.2s; }
+        .calendar-day:hover { background-color: #f0fdf4; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
+        
+        .tooltip-container { position: relative; }
+        .tooltip-text {
+            visibility: hidden;
+            width: 240px;
+            background-color: #064e3b;
+            color: #fff;
+            text-align: center;
+            border-radius: 12px;
+            padding: 12px;
+            position: absolute;
+            z-index: 50;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -120px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.75rem;
+            line-height: 1.2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #d97706;
+        }
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #064e3b transparent transparent transparent;
+        }
+        .tooltip-container:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .islamic-pattern {
+            background-color: #fdfcf0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%23065f46' fill-opacity='0.03'%3E%3Cpath d='M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z'/%3E%3Cpath d='M50 15 L58 42 L85 50 L58 58 L50 85 L42 58 L15 50 L42 42 Z' transform='rotate(45 50 50)'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .arch-header {
+            border-radius: 40px 40px 20px 20px;
+        }
+    </style>
+</head>
+<body class="islamic-pattern min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // --- Иконки ---
+        const CalendarIcon = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>;
+        const ClockIcon = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
+        const ChevronLeft = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>;
+        const ChevronRight = () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>;
+        const InfoIcon = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>;
+        const CrescentIcon = ({ className }) => (
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className={className}>
+                <path d="M12 21a9 9 0 1 1 8.5-6.03 7.5 7.5 0 0 0-14.47-2.94A7.5 7.5 0 0 0 12 21Z" />
+            </svg>
+        );
+
+        const DAYS_OF_WEEK = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+        const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+
+        const AutoExpandingTextarea = ({ value, onChange, placeholder, className }) => {
+            const textareaRef = React.useRef(null);
+
+            useEffect(() => {
+                const textarea = textareaRef.current;
+                if (textarea) {
+                    textarea.style.height = 'auto';
+                    textarea.style.height = `${textarea.scrollHeight}px`;
+                }
+            }, [value]);
+
+            return (
+                <textarea
+                    ref={textareaRef}
+                    value={value}
+                    onChange={(e) => onChange(e.target.value)}
+                    placeholder={placeholder}
+                    className={`${className} resize-none overflow-hidden min-h-[48px] block w-full py-3`}
+                    rows={1}
+                />
+            );
+        };
+
+        const MOTIVATIONS = [
+            "“Воистину, с каждой трудностью приходит облегчение.” (Коран 94:6)",
+            "“О те, которые уверовали! Уповайте на Аллаха.” (Коран 4:171)",
+            "“Терпите, ибо Аллах с терпеливыми.” (Коран 2:153)",
+            "“А если бы вы были благодарны, Я увеличу [Мои блага].” (Коран 14:7)",
+            "“Скажи: ‘Он Милостивый, на Него мы уповаем.’” (Коран 67:29)",
+            "“И поистине, для человека только то, к чему он стремится.” (Коран 53:39)",
+            "“Кто делает добро весом в мельчайшую частицу, тот увидит его.” (Коран 99:7)",
+            "“Спешите к прощению вашего Господа.” (Коран 3:133)",
+            "“Те, которые уверовали и делали праведные дела, их ожидают райские сады.” (Коран 18:107)",
+            "“Не поднимай голос свой над голосом Пророка.” (Коран 49:2)",
+            "“Милосердие Аллаха близко к тем, кто творит добро.” (Коран 7:56)",
+            "“И будьте стойкими, ибо стойкость – признак истинной веры.” (Коран 2:177)",
+            "“Совершайте намаз и раздавайте закят.” (Коран 2:43)",
+            "“И спрашивайте знающих, если сами не знаете.” (Коран 16:43)",
+            "“Не расстраивайтесь: Аллах с нами.” (Коран 9:40)",
+            "“И мы создали вас парами.” (Коран 78:8)",
+            "“Берегите себя и свои семьи от огня.” (Коран 66:6)",
+            "“Не завидуйте друг другу.” (Коран 4:32)",
+            "“Будьте с правдивыми.” (Коран 9:119)",
+            "“Воистину, мы не оставляем награду благодеющих.” (Коран 12:56)",
+            "“Дела оцениваются по намерениям.” (Аль-Бухари, Муслим)",
+            "“Лучший из вас – тот, кто учит Коран и учит других.” (Аль-Бухари)",
+            "“Сильный мусульманин лучше слабого.” (Муслим)",
+            "“Улыбка твоему брату – садака.” (Ат-Тирмизи)",
+            "“Делай лёгкое, избегай трудного и радуй людей.” (Аль-Бухари)",
+            "“Чистота – половина веры.” (Муслим)",
+            "“Приятные слова – это милостыня.” (Муслим)",
+            "“Верь в Аллаха и делай добро.” (Муслим)",
+            "“Тот, кто прощает, обретает уважение.” (Ахмад)",
+            "“Аллах прощает того, кто прощает других.” (Муслим)",
+            "“Не будь гневливым.” (Аль-Бухари)",
+            "“Уделяйте время семье – это поклонение.”",
+            "“Держись умеренности во всем.”",
+            "“Аллах любит дела, которые выполняются постоянно, даже если они малы.” (Аль-Бухари, Муслим)",
+            "“Сделай добро сегодня, и оно вернётся к тебе завтра.”",
+            "“Уважай своих родителей.” (Муслим)",
+            "“Лучшая садака – это знание, переданное другим.”",
+            "“Тот, кто молится за других, получит ту же милость.” (Муслим)",
+            "“Поминайте Аллаха часто, чтобы сердце ваше было мягким.” (Ат-Тирмизи)",
+            "“Лучший из людей – тот, кто приносит пользу другим.” (Аль-Бухари)",
+            "“Аллахумма инни ас’алука ль-худу, ваттука, валь-’аффа, валь-гина.”",
+            "“Аллахумма-йсар ли амри.” – О Аллах, облегчи мне мои дела.",
+            "“Рабби-зидни `илма.” – Господь мой, увеличь мои знания.",
+            "“Бисми-Ллях, таваккальту `аля-Ллях.” – Во имя Аллаха, я уповаю на Него.",
+            "“Аллахумма инни ау́зу бика мина-ль-хамми ва-ль-хузни.”",
+            "“Аллахумма а’ини `ала зикрика.” – О Аллах, помоги мне поминать Тебя.",
+            "“Раббана атина фи-ддуня хасана ва фи-ль-ахирати хасана.”",
+            "“Инни инширах садри.” – Прошу облегчения сердца.",
+            "“Аллахумма саххир ли.” – О Аллах, подари мне лёгкость в деле.",
+            "“Аллахумма открой двери Твоей милости.”",
+            "“Ибо, поистине, после трудностей приходит облегчение.” (Коран 94:5-6)",
+            "“Обращайтесь за помощью к терпению и молитве.” (Коран 2:45)",
+            "“Те, которые веруют и уповают на своего Господа.” (Коран 16:42)",
+            "“Кто боится Аллаха, тому Он устроит выход.” (Коран 65:2)",
+            "“Они веруют в сокровенное, совершают молитву и расходуют из того, чем Мы их наделили.” (Коран 2:3)",
+            "“Поистине, Аллах любит тех, кто очищается.” (Коран 2:222)",
+            "“Прощай и будь великодушным. Поистине, Аллах любит творящих добро.” (Коран 2:237)",
+            "“Успех — для тех, кто боится Аллаха.” (Коран 23:1-11)",
+            "“Держись прямого пути, как тебе велено.” (Коран 11:112)",
+            "“Помните Меня, и Я буду помнить вас.” (Коран 2:152)",
+            "“Лучший из вас – тот, кто учтив по отношению к своей семье.” (Ат-Тирмизи)",
+            "“Будьте сдержанны в тратах.”",
+            "“Ешь, пей, но не расточай.” (Муслим)",
+            "“Сильный верующий более любим Аллаху, чем слабый.” (Муслим)",
+            "“Тот, кто укрывает ошибки другого, Аллах укроет его ошибки.” (Муслим)",
+            "“Облегчайте, а не усложняйте. Радуйте, а не отпугивайте.” (Аль-Бухари)",
+            "“Каждое доброе дело – это садака.” (Муслим)",
+            "“Аллах прощает того, кто прощает других.” (Муслим)",
+            "“Если вы видите зло, пусть измените его рукой, словом или сердцем.” (Муслим)",
+            "“Совершайте праведные дела, пока не наступит Судный день.”",
+            "“Аллахумма арзукни сабр.” – О Аллах, даруй мне терпение.",
+            "“Аллахумма инни ау’зу бика мин аль-касали.” – О Аллах, защити меня от лени.",
+            "“Веди меня по праведному пути и выведи из него с честью.”",
+            "“Рабби ау’зу бика ан агави или угави.” – Господь, защити меня от соблазна.",
+            "“Аллахумма удж’аль лана нура.” – О Аллах, создай для нас свет.",
+            "“Аллахумма инни ас’алука ль-афия фи-д-дуня ва-ль-ахира.”",
+            "“Аллахумма дж’аль ахирата хайру мин ауля.” – Конец лучше, чем начало.",
+            "“О Господь, даруй нам радость в наших семьях и потомстве.” (Коран 25:74)",
+            "“Аллахумма салли ва саллим ’аля набийина Мухаммад.”",
+            "“Аллахумма арзукни ризк халяль.” – Даруй мне халяльный ризк.",
+            "“Каждый день – это возможность приблизиться к Аллаху.”",
+            "“Сделай намаз твоим самым важным делом.”",
+            "“Будь благодарен за то, что имеешь, и Аллах увеличит это.”",
+            "“Препятствия – это испытание, а не наказание.”",
+            "“Сделай маленький шаг сегодня ради великого завтра.”",
+            "“Дружба, основанная на вере, – это благо в вечности.”",
+            "“Слушай Коран – это покой для сердца.”",
+            "“Твои слова могут быть садакой, если они искренни.”",
+            "“Каждая мольба имеет своё время ответа – проявляй терпение.”",
+            "“Один час размышления лучше, чем тысяча поклонений.”",
+            "“Живи так, будто сегодня твой последний день.”",
+            "“Будь мягким, ибо мягкость украшает.”",
+            "“Каждая трудность – это ступенька к твоему развитию.”",
+            "“Аллаху важно не величие дел, а их искренность.”",
+            "“Начни день с зикра – это благословение.”",
+            "“Изучай религию, и она будет направлять тебя в жизни.”",
+            "“Не оставляй садака, даже если это всего лишь доброе слово.”",
+            "“Чистота – ключ к успеху в мирском и вечном.”",
+            "“Будь благодарным даже за маленькие блага.”",
+            "“Не забывай поминать Аллаха в радости и в горе.”"
+        ];
+
+        const CATEGORIES = [
+            { 
+                id: 'ihsan', 
+                name: 'Ихсан дня', 
+                label: 'Стремление к совершенству', 
+                icon: '💎',
+                hint: 'Самое важное дело на сегодня. Ради довольства Аллаха выполните его наилучшим образом. “Воистину, Аллах любит тех, кто стремится к совершенству.” (Коран 2:195)' 
+            },
+            { 
+                id: 'sabr', 
+                name: 'Сабр дня', 
+                label: 'Терпение и усилие', 
+                icon: '🐸',
+                hint: '“Лягушка дня” — самое сложное дело. Терпение — ключ к успеху. “Воистину, Аллах с терпеливыми.” (Коран 2:153)' 
+            },
+            { 
+                id: 'tavakkul', 
+                name: 'Таваккуль', 
+                label: 'Упование на Аллаха', 
+                icon: '🎯',
+                hint: 'Ваша большая цель. Уповайте на Аллаха, и Он поможет. “Кто уповает на Аллаха, тому Он будет достаточно.” (Коран 65:3)' 
+            },
+            { 
+                id: 'fikr', 
+                name: 'Фикр', 
+                label: 'Размышление', 
+                icon: '💡',
+                hint: 'Идея или мудрая мысль дня. “Воистину, в этом – назидание для тех, кто размышляет.” (Коран 16:11)' 
+            },
+            { 
+                id: 'tawfiq', 
+                name: 'Тауфик', 
+                label: 'Успех от Аллаха', 
+                icon: '📈',
+                hint: 'Достижения дня. Помните, что успех — только от Аллаха. “И мой успех – только от Аллаха.” (Коран 11:88)' 
+            },
+            { 
+                id: 'hamdulillah', 
+                name: 'Аль-Хамду ли-Ллях', 
+                label: 'Хвала Аллаху', 
+                icon: '🤲',
+                hint: 'Благодарность дня. “Если вы будете благодарны, Я увеличичу для вас.” (Коран 14:7)' 
+            }
+        ];
+
+        const COLOR_PRESETS = {
+            emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-900', dot: 'bg-emerald-600' },
+            amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-900', dot: 'bg-amber-500' },
+            slate: { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-900', dot: 'bg-slate-400' },
+            rose: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-900', dot: 'bg-rose-500' },
+            indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-900', dot: 'bg-indigo-500' },
+            cyan: { bg: 'bg-cyan-50', border: 'border-cyan-200', text: 'text-cyan-900', dot: 'bg-cyan-500' },
+            orange: { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-900', dot: 'bg-orange-500' },
+            violet: { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-900', dot: 'bg-violet-500' },
+        };
+
+        const INITIAL_CATEGORIES = {
+            startup: { color: 'emerald', label: 'Стартап' },
+            content: { color: 'amber', label: 'Контент / Клуб' },
+            itbot: { color: 'emerald', label: 'IT-бот' },
+            family: { color: 'slate', label: 'Личное / Семья' }
+        };
+
+        const getItemType = (item, categories) => {
+            if (item.type && categories[item.type]) return item.type;
+            return Object.keys(categories)[0] || 'family';
+        };
+
+        const DEFAULT_ROUTINE = {
+            'Пн': [
+                { time: '05:30–06:30', activity: 'Стартап', type: 'startup' },
+                { time: '06:30–07:30', activity: '🎬 Контент / сценарий / съемка', type: 'content' },
+                { time: '07:30–09:00', activity: '🥋 Клуб — тренировка/бирол', type: 'content' },
+                { time: '09:00–10:00', activity: '🍽️ Завтрак / подготовка', type: 'family' },
+                { time: '10:00–12:00', activity: '🤖 IT-бот — звонки / демо', type: 'itbot' },
+                { time: '12:00–13:00', activity: '🍽️ Обед / семья', type: 'family' },
+                { time: '14:00–15:30', activity: 'Свободное / семья', type: 'family' },
+                { time: '15:30–17:00', activity: '🥋 Клуб — тренировка/бирол', type: 'content' },
+                { time: '17:00–18:00', activity: '🤖 IT-бот — дожим / ответы', type: 'itbot' },
+                { time: '18:00–19:30', activity: '🥋 Клуб — тренировка/бирол', type: 'content' },
+                { time: '19:30–20:00', activity: '🍽️ Ужин / семья', type: 'family' },
+                { time: '20:00–21:00', activity: 'Стартап — лёгкий', type: 'startup' },
+                { time: '21:00–22:30', activity: 'Свободное / семья / подготовка ко сну', type: 'family' },
+                { time: '22:30–05:30', activity: '😴 Сон / отдых', type: 'family' },
+            ],
+            ...Object.fromEntries(['Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map(day => [
+                day, [
+                    { time: '05:30–06:30', activity: 'Стартап', type: 'startup' },
+                    { time: '06:30–07:30', activity: '🎬 Контент / сценарий / съемка', type: 'content' },
+                    { time: '07:30–09:00', activity: (day === 'Чт' || day === 'Вт' || day === 'Сб') ? '🎬 Контент / съемка' : '🥋 Клуб — тренировка/бирол', type: 'content' },
+                    { time: '09:00–10:00', activity: '🍽️ Завтрак / подготовка', type: 'family' },
+                    { time: '10:00–12:00', activity: '🤖 IT-бот — звонки / демо', type: 'itbot' },
+                    { time: '12:00–13:00', activity: '🍽️ Обед / семья', type: 'family' },
+                    { time: day === 'Чт' ? '13:00–14:00' : '14:00–15:30', activity: day === 'Чт' ? 'Жума' : 'Свободное / семья', type: 'family' },
+                    { time: '15:30–17:00', activity: '🥋 Клуб — тренировка/бирол', type: 'content' },
+                    { time: '17:00–18:00', activity: '🤖 IT-бот — дожим / ответы', type: 'itbot' },
+                    { time: '18:00–19:30', activity: '🥋 Клуб — тренировка/бирол', type: 'content' },
+                    { time: '19:30–20:00', activity: '🍽️ Ужин / семья', type: 'family' },
+                    { time: '20:00–21:00', activity: 'Стартап — лёгкий', type: 'startup' },
+                    { time: '21:00–22:30', activity: 'Свободное / семья / подготовка ко сну', type: 'family' },
+                    { time: '22:30–05:30', activity: '😴 Сон / отдых', type: 'family' },
+                ]
+            ]))
+        };
+
+        const App = () => {
+            const [viewMode, setViewMode] = useState('week');
+            const [selectedDate, setSelectedDate] = useState(new Date());
+
+            const [categories, setCategories] = useState(() => {
+                const saved = localStorage.getItem('planner_categories');
+                return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+            });
+
+            const [routine, setRoutine] = useState(() => {
+                const saved = localStorage.getItem('planner_routine');
+                const version = localStorage.getItem('planner_version');
+                if (!saved || version !== '2') {
+                    localStorage.setItem('planner_version', '2');
+                    return DEFAULT_ROUTINE;
+                }
+                return JSON.parse(saved);
+            });
+            const [dayData, setDayData] = useState(() => {
+                const saved = localStorage.getItem('planner_day_data');
+                return saved ? JSON.parse(saved) : {};
+            });
+
+            const [activeCategoryPicker, setActiveCategoryPicker] = useState(null);
+
+            useEffect(() => localStorage.setItem('planner_categories', JSON.stringify(categories)), [categories]);
+            useEffect(() => localStorage.setItem('planner_routine', JSON.stringify(routine)), [routine]);
+            useEffect(() => localStorage.setItem('planner_day_data', JSON.stringify(dayData)), [dayData]);
+
+            const formatDateKey = (date) => date.toISOString().split('T')[0];
+            
+            const currentDayNumber = selectedDate.getDate();
+            const currentMonthShort = MONTHS[selectedDate.getMonth()].substring(0, 3);
+            
+            const motivationForDay = useMemo(() => {
+                const startOfYear = new Date(selectedDate.getFullYear(), 0, 0);
+                const diff = selectedDate - startOfYear;
+                const oneDay = 1000 * 60 * 60 * 24;
+                const dayOfYear = Math.floor(diff / oneDay);
+                return MOTIVATIONS[dayOfYear % MOTIVATIONS.length];
+            }, [selectedDate]);
+
+            const weekDays = useMemo(() => {
+                const d = new Date(selectedDate);
+                const day = d.getDay();
+                const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+                const start = new Date(d.setDate(diff));
+                return Array.from({ length: 7 }, (_, i) => {
+                    const res = new Date(start);
+                    res.setDate(start.getDate() + i);
+                    return res;
+                });
+            }, [selectedDate]);
+
+            const updateDayValue = (dateKey, catId, value) => {
+                setDayData(prev => ({
+                    ...prev,
+                    [dateKey]: { ...(prev[dateKey] || {}), [catId]: value }
+                }));
+            };
+
+            return (
+                <div className="max-w-6xl mx-auto p-4 md:p-8">
+                    {/* Header */}
+                    <header className="bg-white rounded-3xl shadow-xl p-6 mb-6 flex flex-col md:flex-row justify-between items-center gap-4 border-b-8 border-emerald-700 relative overflow-hidden arch-header">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-amber-400"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                            <div className="bg-emerald-800 p-2 rounded-2xl shadow-lg border-2 border-amber-400 flex flex-col items-center justify-center min-w-[64px] h-[64px] relative overflow-hidden bg-gradient-to-br from-emerald-800 to-emerald-900">
+                                <div className="absolute top-0 left-0 w-full h-1.5 bg-amber-400"></div>
+                                <span className="text-[10px] font-black text-amber-400/80 uppercase tracking-tighter leading-none mt-1">{currentMonthShort}</span>
+                                <span className="text-2xl font-black text-white leading-none">{currentDayNumber}</span>
+                            </div>
+                            <div>
+                                <h1 className="text-3xl font-black text-emerald-900 tracking-tight">Начни день с Бисмиллях 🤲</h1>
+                                <p className="text-emerald-700 font-bold text-sm italic opacity-90">{motivationForDay}</p>
+                            </div>
+                        </div>
+                        <div className="flex bg-emerald-50 p-1.5 rounded-2xl shadow-inner border border-emerald-100 relative z-10">
+                            <button onClick={() => setViewMode('week')} className={`px-8 py-2.5 rounded-xl font-bold transition-all ${viewMode === 'week' ? 'bg-emerald-700 shadow-lg text-white' : 'text-emerald-700 hover:bg-emerald-100'}`}>Неделя</button>
+                            <button onClick={() => setViewMode('month')} className={`px-8 py-2.5 rounded-xl font-bold transition-all ${viewMode === 'month' ? 'bg-emerald-700 shadow-lg text-white' : 'text-emerald-700 hover:bg-emerald-100'}`}>Месяц</button>
+                        </div>
+                    </header>
+
+                    {viewMode === 'week' ? (
+                        <div className="space-y-6 animate-fade-in">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                <h2 className="text-2xl font-bold text-emerald-900 flex items-center gap-2">
+                                    <span className="text-amber-600">⚜️ {MONTHS[selectedDate.getMonth()]}</span> {selectedDate.getFullYear()}
+                                </h2>
+                                <button onClick={() => setSelectedDate(new Date())} className="px-6 py-2 bg-emerald-800 shadow-md border-2 border-amber-400/20 rounded-2xl text-sm font-bold text-white hover:bg-emerald-700 transition-all uppercase tracking-widest">Сегодня</button>
+                            </div>
+
+                            <div className="bg-white rounded-3xl shadow-xl p-4 flex items-center justify-between gap-2 border border-emerald-100">
+                                <button onClick={() => {
+                                    const d = new Date(selectedDate);
+                                    d.setDate(d.getDate() - 7);
+                                    setSelectedDate(d);
+                                }} className="p-3 hover:bg-emerald-50 rounded-2xl text-emerald-700 transition-colors"><ChevronLeft /></button>
+                                
+                                <div className="flex flex-1 gap-2 justify-between">
+                                    {weekDays.map(date => {
+                                        const isSelected = date.toDateString() === selectedDate.toDateString();
+                                        const isToday = date.toDateString() === new Date().toDateString();
+                                        const dayName = DAYS_OF_WEEK[date.getDay() === 0 ? 6 : date.getDay() - 1];
+                                        return (
+                                            <button
+                                                key={date.toISOString()}
+                                                onClick={() => setSelectedDate(date)}
+                                                className={`flex-1 min-w-[60px] py-4 rounded-2xl flex flex-col items-center transition-all ${
+                                                    isSelected ? 'bg-emerald-700 text-white shadow-lg scale-105 border-b-4 border-amber-400' : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100'
+                                                }`}
+                                            >
+                                                <span className="text-[10px] uppercase font-black mb-1 opacity-70">{dayName}</span>
+                                                <span className="text-xl font-black">{date.getDate()}</span>
+                                                {isToday && <div className={`w-1.5 h-1.5 rounded-full mt-1 ${isSelected ? 'bg-amber-400 animate-ping' : 'bg-emerald-600 animate-pulse'}`}></div>}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+
+                                <button onClick={() => {
+                                    const d = new Date(selectedDate);
+                                    d.setDate(d.getDate() + 7);
+                                    setSelectedDate(d);
+                                }} className="p-3 hover:bg-emerald-50 rounded-2xl text-emerald-700 transition-colors"><ChevronRight /></button>
+                            </div>
+
+                            <div className="grid lg:grid-cols-12 gap-8">
+                                {/* Left column: Spiritual Goals */}
+                                <div className="lg:col-span-5 space-y-4">
+                                    <div className="bg-white rounded-3xl shadow-xl p-6 border-t-8 border-amber-500">
+                                        <h3 className="text-xl font-black text-emerald-900 mb-6 flex items-center gap-2">🕌 Цели дня</h3>
+                                        <div className="space-y-5">
+                                            {CATEGORIES.map(cat => (
+                                                <div key={cat.id} className="relative group">
+                                                    <div className="flex items-center justify-between mb-1.5">
+                                                        <label className="text-xs font-black text-emerald-800 uppercase flex items-center gap-2">
+                                                            <span className="p-1 bg-amber-100 rounded-lg">{cat.icon}</span> {cat.name}
+                                                        </label>
+                                                        <div className="tooltip-container">
+                                                            <InfoIcon className="text-emerald-200 hover:text-amber-500 cursor-help transition-colors" />
+                                                            <div className="tooltip-text">{cat.hint}</div>
+                                                        </div>
+                                                    </div>
+                                                    <AutoExpandingTextarea 
+                                                        value={dayData[formatDateKey(selectedDate)]?.[cat.id] || ''}
+                                                        onChange={(val) => updateDayValue(formatDateKey(selectedDate), cat.id, val)}
+                                                        placeholder={cat.label}
+                                                        className="px-4 bg-emerald-50/50 border-2 border-transparent focus:border-amber-400 focus:bg-white rounded-2xl text-sm font-medium text-emerald-950 outline-none transition-all placeholder:text-emerald-200"
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Right column: General Routine */}
+                                <div className="lg:col-span-7">
+                                    <div className="bg-white rounded-3xl shadow-xl p-6 border-t-8 border-emerald-800">
+                                        <div className="flex items-center justify-between mb-6">
+                                            <h3 className="text-xl font-black text-emerald-900 flex items-center gap-2">
+                                                <ClockIcon className="text-emerald-700" /> Рутина
+                                            </h3>
+                                            <span className="text-[10px] font-black bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full uppercase border border-emerald-200">Истикома (Постоянство)</span>
+                                        </div>
+                                        <div className="space-y-3">
+                                            {(routine[DAYS_OF_WEEK[selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1]] || []).map((item, idx) => {
+                                                const catId = getItemType(item, categories);
+                                                const category = categories[catId] || categories[Object.keys(categories)[0]];
+                                                const color = COLOR_PRESETS[category.color] || COLOR_PRESETS.family;
+                                                
+                                                return (
+                                                    <div key={idx} className="relative">
+                                                        <div className={`border-2 rounded-2xl p-4 ${color.bg} ${color.border} flex items-center justify-between hover:shadow-md transition-all group`}>
+                                                            <div className="flex-1 flex items-start gap-3">
+                                                                <button 
+                                                                    onClick={() => setActiveCategoryPicker(activeCategoryPicker === idx ? null : idx)}
+                                                                    className={`w-4 h-4 rounded-full mt-1.5 shrink-0 ${color.dot} shadow-sm border-2 border-white transition-transform hover:scale-125`}
+                                                                    title="Изменить категорию"
+                                                                ></button>
+                                                                <div className="flex-1">
+                                                                    <div className={`text-[10px] font-black uppercase tracking-widest text-emerald-950/50`}>{item.time}</div>
+                                                                    <input 
+                                                                        type="text" 
+                                                                        value={item.activity || ''}
+                                                                        onChange={(e) => {
+                                                                            const dayName = DAYS_OF_WEEK[selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1];
+                                                                            const newRoutine = { ...routine };
+                                                                            newRoutine[dayName][idx].activity = e.target.value;
+                                                                            newRoutine[dayName][idx].type = catId;
+                                                                            setRoutine(newRoutine);
+                                                                        }}
+                                                                        className={`bg-transparent border-none focus:ring-0 w-full text-sm font-bold ${color.text} p-0`}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        {activeCategoryPicker === idx && (
+                                                            <div className="absolute top-full left-0 mt-2 z-50 bg-white rounded-2xl shadow-2xl border border-emerald-100 p-3 w-64 animate-fade-in">
+                                                                <div className="grid grid-cols-1 gap-1">
+                                                                    {Object.entries(categories).map(([id, cat]) => (
+                                                                        <button
+                                                                            key={id}
+                                                                            onClick={() => {
+                                                                                const dayName = DAYS_OF_WEEK[selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1];
+                                                                                const newRoutine = { ...routine };
+                                                                                newRoutine[dayName][idx].type = id;
+                                                                                setRoutine(newRoutine);
+                                                                                setActiveCategoryPicker(null);
+                                                                            }}
+                                                                            className="flex items-center gap-3 p-2 hover:bg-emerald-50 rounded-xl transition-colors text-left"
+                                                                        >
+                                                                            <div className={`w-3 h-3 rounded-full ${COLOR_PRESETS[cat.color].dot}`}></div>
+                                                                            <span className="text-xs font-bold text-emerald-900">{cat.label}</span>
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        /* --- MONTH VIEW --- */
+                        <div className="bg-white rounded-3xl shadow-xl p-8 animate-fade-in border-t-8 border-emerald-800 arch-header">
+                            <div className="flex items-center justify-between mb-10">
+                                <h2 className="text-4xl font-black text-emerald-900">
+                                    <span className="text-amber-600">⚜️</span> {MONTHS[selectedDate.getMonth()]} <span className="text-emerald-700">{selectedDate.getFullYear()}</span>
+                                </h2>
+                                <div className="flex gap-3 bg-emerald-50 p-2 rounded-2xl border border-emerald-100">
+                                    <button onClick={() => {
+                                        const d = new Date(selectedDate); d.setMonth(d.getMonth() - 1); setSelectedDate(d);
+                                    }} className="p-2 hover:bg-white hover:shadow-md rounded-xl transition-all text-emerald-700"><ChevronLeft /></button>
+                                    <button onClick={() => setSelectedDate(new Date())} className="px-6 py-2 text-sm font-black text-emerald-800 hover:text-emerald-600 transition-colors uppercase tracking-tighter">Сегодня</button>
+                                    <button onClick={() => {
+                                        const d = new Date(selectedDate); d.setMonth(d.getMonth() + 1); setSelectedDate(d);
+                                    }} className="p-2 hover:bg-white hover:shadow-md rounded-xl transition-all text-emerald-700"><ChevronRight /></button>
+                                </div>
+                            </div>
+                            <div className="calendar-grid text-center mb-4">
+                                {DAYS_OF_WEEK.map(d => <div key={d} className="py-2 text-[10px] font-black text-emerald-800/40 uppercase tracking-widest">{d}</div>)}
+                            </div>
+                            <div className="calendar-grid bg-emerald-100 rounded-3xl overflow-hidden border border-emerald-100 shadow-inner">
+                                {(() => {
+                                    const year = selectedDate.getFullYear();
+                                    const month = selectedDate.getMonth();
+                                    const date = new Date(year, month, 1);
+                                    const days = [];
+                                    let firstDay = date.getDay() - 1;
+                                    if (firstDay === -1) firstDay = 6;
+                                    for (let i = 0; i < firstDay; i++) days.push(null);
+                                    while (date.getMonth() === month) {
+                                        days.push(new Date(date));
+                                        date.setDate(date.getDate() + 1);
+                                    }
+                                    return days.map((date, i) => {
+                                        if (!date) return <div key={`empty-${i}`} className="bg-emerald-50/30"></div>;
+                                        const key = formatDateKey(date);
+                                        const isToday = new Date().toDateString() === date.toDateString();
+                                        const hasIhsan = dayData[key]?.ihsan;
+                                        return (
+                                            <div 
+                                                key={key} 
+                                                onClick={() => { setSelectedDate(date); setViewMode('week'); }}
+                                                className={`bg-white calendar-day p-3 cursor-pointer border border-emerald-50 relative group ${isToday ? 'bg-emerald-50' : 'hover:bg-amber-50/30'}`}
+                                            >
+                                                <span className={`text-sm font-black ${isToday ? 'text-white bg-emerald-700 px-2 py-1 rounded-lg shadow-md' : 'text-emerald-800/40 group-hover:text-emerald-700'}`}>{date.getDate()}</span>
+                                                <div className="mt-2">
+                                                    {hasIhsan && <div className="text-[9px] font-bold text-emerald-900 bg-amber-100 p-1 rounded border border-amber-200 truncate">⚜️ {hasIhsan}</div>}
+                                                </div>
+                                            </div>
+                                        );
+                                    });
+                                })()}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Footer Legend */}
+                    <footer className="mt-8 bg-emerald-900 rounded-3xl shadow-xl px-6 py-4 border-b-4 border-amber-500 text-white">
+                        <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
+                            <div className="flex items-center gap-2 shrink-0">
+                                <div className="w-4 h-0.5 bg-amber-400 rounded-full"></div>
+                                <h3 className="font-black text-amber-400 uppercase text-[10px] tracking-[0.2em]">Кодекс</h3>
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                                {Object.entries(categories).map(([id, cat]) => (
+                                    <div key={id} className="flex items-center gap-2 group relative">
+                                        <div className="relative flex items-center">
+                                            <button 
+                                                onClick={() => setActiveCategoryPicker(activeCategoryPicker === `legend_${id}` ? null : `legend_${id}`)}
+                                                className={`w-2.5 h-2.5 rounded-full ${COLOR_PRESETS[cat.color].dot} border border-white/20 shadow-sm hover:scale-125 transition-transform`}
+                                            />
+                                            {activeCategoryPicker === `legend_${id}` && (
+                                                <div className="absolute bottom-full left-0 mb-3 z-50 bg-white p-1.5 rounded-xl shadow-2xl flex gap-1 border border-emerald-100 animate-fade-in">
+                                                    {Object.keys(COLOR_PRESETS).map(colorName => (
+                                                        <button
+                                                            key={colorName}
+                                                            onClick={() => {
+                                                                setCategories(prev => ({ ...prev, [id]: { ...cat, color: colorName } }));
+                                                                setActiveCategoryPicker(null);
+                                                            }}
+                                                            className={`w-3.5 h-3.5 rounded-full ${COLOR_PRESETS[colorName].dot} border border-black/5 hover:scale-125 transition-transform`}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <input 
+                                            type="text"
+                                            value={cat.label}
+                                            onChange={(e) => setCategories(prev => ({
+                                                ...prev,
+                                                [id]: { ...cat, label: e.target.value }
+                                            }))}
+                                            className="bg-transparent border-none focus:ring-0 p-0 text-[11px] font-bold text-emerald-50/70 w-20 placeholder:text-white/10"
+                                            placeholder="Категория..."
+                                        />
+                                        <button 
+                                            onClick={() => {
+                                                const newCats = { ...categories };
+                                                delete newCats[id];
+                                                setCategories(newCats);
+                                            }}
+                                            className="opacity-0 group-hover:opacity-100 text-[8px] text-white/30 hover:text-white transition-all w-0 group-hover:w-3 overflow-hidden"
+                                        >✕</button>
+                                    </div>
+                                ))}
+                                
+                                <button 
+                                    onClick={() => {
+                                        const id = `cat_${Date.now()}`;
+                                        setCategories(prev => ({
+                                            ...prev,
+                                            [id]: { color: 'emerald', label: '' }
+                                        }));
+                                    }}
+                                    className="w-5 h-5 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 text-white/30 hover:text-white transition-all border border-white/5 text-xs ml-2"
+                                >+</button>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
