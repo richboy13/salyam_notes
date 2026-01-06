@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Шаблон Планера - Бисмиллях</title>
+    <title>Начни день с Бисмиллях!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -295,30 +295,30 @@
             const [selectedDate, setSelectedDate] = useState(new Date());
 
             const [categories, setCategories] = useState(() => {
-                const saved = localStorage.getItem('template_categories');
+                const saved = localStorage.getItem('bismillah_categories');
                 return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
             });
 
             const [routine, setRoutine] = useState(() => {
-                const saved = localStorage.getItem('template_routine');
-                const version = localStorage.getItem('template_version');
-                if (!saved || version !== 'template_1') {
-                    localStorage.setItem('template_version', 'template_1');
+                const saved = localStorage.getItem('bismillah_routine');
+                const version = localStorage.getItem('bismillah_version');
+                if (!saved || version !== 'v1') {
+                    localStorage.setItem('bismillah_version', 'v1');
                     return DEFAULT_ROUTINE;
                 }
                 return JSON.parse(saved);
             });
             const [dayData, setDayData] = useState(() => {
-                const saved = localStorage.getItem('template_day_data');
+                const saved = localStorage.getItem('bismillah_day_data');
                 return saved ? JSON.parse(saved) : {};
             });
 
             const [activeCategoryPicker, setActiveCategoryPicker] = useState(null);
             const [isGoalsOpen, setIsGoalsOpen] = useState(false);
 
-            useEffect(() => localStorage.setItem('template_categories', JSON.stringify(categories)), [categories]);
-            useEffect(() => localStorage.setItem('template_routine', JSON.stringify(routine)), [routine]);
-            useEffect(() => localStorage.setItem('template_day_data', JSON.stringify(dayData)), [dayData]);
+            useEffect(() => localStorage.setItem('bismillah_categories', JSON.stringify(categories)), [categories]);
+            useEffect(() => localStorage.setItem('bismillah_routine', JSON.stringify(routine)), [routine]);
+            useEffect(() => localStorage.setItem('bismillah_day_data', JSON.stringify(dayData)), [dayData]);
 
             const formatDateKey = (date) => date.toISOString().split('T')[0];
             
