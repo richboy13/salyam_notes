@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Начни день с Бисмиллях</title>
+    <title>Шаблон Планера - Бисмиллях</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -286,71 +286,38 @@
             return Object.keys(categories)[0] || 'family';
         };
 
-        const DEFAULT_ROUTINE = {
-            'Пн': [
-                { time: '05:30–06:30', activity: 'Работа', type: 'work' },
-                { time: '06:30–07:30', activity: '🎬 Обучение / Развитие', type: 'growth' },
-                { time: '07:30–09:00', activity: '🥋 Тренировка', type: 'growth' },
-                { time: '09:00–10:00', activity: '🍽️ Завтрак / Подготовка', type: 'family' },
-                { time: '10:00–12:00', activity: '🤖 Проекты / Работа', type: 'projects' },
-                { time: '12:00–13:00', activity: '🍽️ Обед / Семья', type: 'family' },
-                { time: '14:00–15:30', activity: 'Свободное время', type: 'family' },
-                { time: '15:30–17:00', activity: '🥋 Тренировка', type: 'growth' },
-                { time: '17:00–18:00', activity: '🤖 Проекты / Задачи', type: 'projects' },
-                { time: '18:00–19:30', activity: '🥋 Тренировка', type: 'growth' },
-                { time: '19:30–20:00', activity: '🍽️ Ужин / Семья', type: 'family' },
-                { time: '20:00–21:00', activity: 'Работа — легкая', type: 'work' },
-                { time: '21:00–22:30', activity: 'Семья / Подготовка ко сну', type: 'family' },
-                { time: '22:30–05:30', activity: '😴 Сон / Отдых', type: 'family' },
-            ],
-            ...Object.fromEntries(['Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map(day => [
-                day, [
-                    { time: '05:30–06:30', activity: 'Работа', type: 'work' },
-                    { time: '06:30–07:30', activity: '🎬 Обучение / Развитие', type: 'growth' },
-                    { time: '07:30–09:00', activity: (day === 'Чт' || day === 'Вт' || day === 'Сб') ? '🎬 Обучение / Чтение' : '🥋 Тренировка', type: 'growth' },
-                    { time: '09:00–10:00', activity: '🍽️ Завтрак / Подготовка', type: 'family' },
-                    { time: '10:00–12:00', activity: '🤖 Проекты / Работа', type: 'projects' },
-                    { time: '12:00–13:00', activity: '🍽️ Обед / Семья', type: 'family' },
-                    { time: day === 'Чт' ? '13:00–14:00' : '14:00–15:30', activity: day === 'Чт' ? 'Жума' : 'Свободное время', type: 'family' },
-                    { time: '15:30–17:00', activity: '🥋 Тренировка', type: 'growth' },
-                    { time: '17:00–18:00', activity: '🤖 Проекты / Задачи', type: 'projects' },
-                    { time: '18:00–19:30', activity: '🥋 Тренировка', type: 'growth' },
-                    { time: '19:30–20:00', activity: '🍽️ Ужин / Семья', type: 'family' },
-                    { time: '20:00–21:00', activity: 'Работа — легкая', type: 'work' },
-                    { time: '21:00–22:30', activity: 'Семья / Подготовка ко сну', type: 'family' },
-                    { time: '22:30–05:30', activity: '😴 Сон / Отдых', type: 'family' },
-                ]
-            ]))
-        };
+        const DEFAULT_ROUTINE = Object.fromEntries(['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map(day => [
+            day, Array.from({ length: 12 }, () => ({ time: '', activity: '', type: 'family' }))
+        ]));
 
         const App = () => {
             const [viewMode, setViewMode] = useState('week');
             const [selectedDate, setSelectedDate] = useState(new Date());
 
             const [categories, setCategories] = useState(() => {
-                const saved = localStorage.getItem('planner_categories');
+                const saved = localStorage.getItem('template_categories');
                 return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
             });
 
             const [routine, setRoutine] = useState(() => {
-                const saved = localStorage.getItem('planner_routine');
-                const version = localStorage.getItem('planner_version');
-                if (!saved || version !== '2') {
-                    localStorage.setItem('planner_version', '2');
+                const saved = localStorage.getItem('template_routine');
+                const version = localStorage.getItem('template_version');
+                if (!saved || version !== 'template_1') {
+                    localStorage.setItem('template_version', 'template_1');
                     return DEFAULT_ROUTINE;
                 }
                 return JSON.parse(saved);
             });
             const [dayData, setDayData] = useState(() => {
-                const saved = localStorage.getItem('planner_day_data');
+                const saved = localStorage.getItem('template_day_data');
                 return saved ? JSON.parse(saved) : {};
             });
 
             const [activeCategoryPicker, setActiveCategoryPicker] = useState(null);
 
-            useEffect(() => localStorage.setItem('planner_categories', JSON.stringify(categories)), [categories]);
-            useEffect(() => localStorage.setItem('planner_routine', JSON.stringify(routine)), [routine]);
-            useEffect(() => localStorage.setItem('planner_day_data', JSON.stringify(dayData)), [dayData]);
+            useEffect(() => localStorage.setItem('template_categories', JSON.stringify(categories)), [categories]);
+            useEffect(() => localStorage.setItem('template_routine', JSON.stringify(routine)), [routine]);
+            useEffect(() => localStorage.setItem('template_day_data', JSON.stringify(dayData)), [dayData]);
 
             const formatDateKey = (date) => date.toISOString().split('T')[0];
             
@@ -546,7 +513,18 @@
                                                                     title="Изменить категорию"
                                                                 ></button>
                                                                 <div className="flex-1">
-                                                                    <div className={`text-[10px] font-black uppercase tracking-widest text-emerald-950/50`}>{item.time}</div>
+                                                                    <input 
+                                                                        type="text" 
+                                                                        value={item.time || ''}
+                                                                        onChange={(e) => {
+                                                                            const dayName = DAYS_OF_WEEK[selectedDate.getDay() === 0 ? 6 : selectedDate.getDay() - 1];
+                                                                            const newRoutine = { ...routine };
+                                                                            newRoutine[dayName][idx].time = e.target.value;
+                                                                            setRoutine(newRoutine);
+                                                                        }}
+                                                                        className="bg-transparent border-none focus:ring-0 p-0 text-[10px] font-black uppercase tracking-widest text-emerald-950/50 w-full"
+                                                                        placeholder="--:--"
+                                                                    />
                                                                     <input 
                                                                         type="text" 
                                                                         value={item.activity || ''}
@@ -558,6 +536,7 @@
                                                                             setRoutine(newRoutine);
                                                                         }}
                                                                         className={`bg-transparent border-none focus:ring-0 w-full text-sm font-bold ${color.text} p-0`}
+                                                                        placeholder="Название дела..."
                                                                     />
                                                                 </div>
                                                             </div>
