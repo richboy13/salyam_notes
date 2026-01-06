@@ -275,7 +275,7 @@
         };
 
         const INITIAL_CATEGORIES = {
-            work: { color: 'emerald', label: 'Стартап' },
+            work: { color: 'indigo', label: 'Стартап' },
             content: { color: 'amber', label: 'Контент / Клуб' },
             bot: { color: 'emerald', label: 'IT-бот' },
             family: { color: 'slate', label: 'Личное / Семья' }
@@ -347,7 +347,7 @@
             const [categories, setCategories] = useState(() => {
                 const saved = localStorage.getItem('planner_categories');
                 const version = localStorage.getItem('planner_version');
-                if (!saved || version !== '3') {
+                if (!saved || version !== '4') {
                     return INITIAL_CATEGORIES;
                 }
                 return JSON.parse(saved);
@@ -356,8 +356,8 @@
             const [routine, setRoutine] = useState(() => {
                 const saved = localStorage.getItem('planner_routine');
                 const version = localStorage.getItem('planner_version');
-                if (!saved || version !== '3') {
-                    localStorage.setItem('planner_version', '3');
+                if (!saved || version !== '4') {
+                    localStorage.setItem('planner_version', '4');
                     return DEFAULT_ROUTINE;
                 }
                 return JSON.parse(saved);
