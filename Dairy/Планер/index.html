@@ -275,10 +275,10 @@
         };
 
         const INITIAL_CATEGORIES = {
-            work: { color: 'emerald', label: 'Работа' },
-            growth: { color: 'amber', label: 'Учеба / Рост' },
-            projects: { color: 'indigo', label: 'Проекты' },
-            family: { color: 'slate', label: 'Семья / Дом' }
+            work: { color: 'emerald', label: 'Стартап' },
+            content: { color: 'amber', label: 'Контент / Клуб' },
+            bot: { color: 'emerald', label: 'IT-бот' },
+            family: { color: 'slate', label: 'Личное / Семья' }
         };
 
         const getItemType = (item, categories) => {
@@ -288,37 +288,37 @@
 
         const DEFAULT_ROUTINE = {
             'Пн': [
-                { time: '05:30–06:30', activity: 'Работа', type: 'work' },
-                { time: '06:30–07:30', activity: '🎬 Обучение / Развитие', type: 'growth' },
-                { time: '07:30–09:00', activity: '🥋 Тренировка', type: 'growth' },
+                { time: '05:30–06:30', activity: 'Стартап', type: 'work' },
+                { time: '06:30–07:30', activity: '🎬 Контент / сценарий / съемка', type: 'content' },
+                { time: '07:30–09:00', activity: '🥋 Клуб — тренировка/бирол', type: 'content' },
                 { time: '09:00–10:00', activity: '🍽️ Завтрак / Подготовка', type: 'family' },
-                { time: '10:00–12:00', activity: '🤖 Проекты / Работа', type: 'projects' },
+                { time: '10:00–12:00', activity: '🤖 IT-бот — звонки / демо', type: 'bot' },
                 { time: '12:00–13:00', activity: '🍽️ Обед / Семья', type: 'family' },
                 { time: '14:00–15:30', activity: 'Свободное время', type: 'family' },
-                { time: '15:30–17:00', activity: '🥋 Тренировка', type: 'growth' },
-                { time: '17:00–18:00', activity: '🤖 Проекты / Задачи', type: 'projects' },
-                { time: '18:00–19:30', activity: '🥋 Тренировка', type: 'growth' },
-                { time: '19:30–20:00', activity: '🍽️ Ужин / Семья', type: 'family' },
-                { time: '20:00–21:00', activity: 'Работа — легкая', type: 'work' },
+                { time: '15:30–17:00', activity: '🥋 Тренировка', type: 'content' },
+                { time: '17:00–18:00', activity: '🤖 IT-бот — задачи', type: 'bot' },
+                { time: '18:00–19:30', activity: '🥋 Тренировка', type: 'content' },
+                { time: '19:30–20:00', activity: '🍽️ Ужин / семья', type: 'family' },
+                { time: '20:00–21:00', activity: 'Стартап — легкая работа', type: 'work' },
                 { time: '21:00–22:30', activity: 'Семья / Подготовка ко сну', type: 'family' },
-                { time: '22:30–05:30', activity: '😴 Сон / Отдых', type: 'family' },
+                { time: '22:30–05:30', activity: '😴 Сон / отдых', type: 'family' },
             ],
             ...Object.fromEntries(['Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map(day => [
                 day, [
-                    { time: '05:30–06:30', activity: 'Работа', type: 'work' },
-                    { time: '06:30–07:30', activity: '🎬 Обучение / Развитие', type: 'growth' },
-                    { time: '07:30–09:00', activity: (day === 'Чт' || day === 'Вт' || day === 'Сб') ? '🎬 Обучение / Чтение' : '🥋 Тренировка', type: 'growth' },
+                    { time: '05:30–06:30', activity: 'Стартап', type: 'work' },
+                    { time: '06:30–07:30', activity: '🎬 Контент / сценарий / съемка', type: 'content' },
+                    { time: '07:30–09:00', activity: (day === 'Чт' || day === 'Вт' || day === 'Сб') ? '🎬 Обучение / Чтение' : '🥋 Клуб — тренировка/бирол', type: 'content' },
                     { time: '09:00–10:00', activity: '🍽️ Завтрак / Подготовка', type: 'family' },
-                    { time: '10:00–12:00', activity: '🤖 Проекты / Работа', type: 'projects' },
+                    { time: '10:00–12:00', activity: '🤖 IT-бот — звонки / демо', type: 'bot' },
                     { time: '12:00–13:00', activity: '🍽️ Обед / Семья', type: 'family' },
                     { time: day === 'Чт' ? '13:00–14:00' : '14:00–15:30', activity: day === 'Чт' ? 'Жума' : 'Свободное время', type: 'family' },
-                    { time: '15:30–17:00', activity: '🥋 Тренировка', type: 'growth' },
-                    { time: '17:00–18:00', activity: '🤖 Проекты / Задачи', type: 'projects' },
-                    { time: '18:00–19:30', activity: '🥋 Тренировка', type: 'growth' },
-                    { time: '19:30–20:00', activity: '🍽️ Ужин / Семья', type: 'family' },
-                    { time: '20:00–21:00', activity: 'Работа — легкая', type: 'work' },
+                    { time: '15:30–17:00', activity: '🥋 Тренировка', type: 'content' },
+                    { time: '17:00–18:00', activity: '🤖 IT-бот — задачи', type: 'bot' },
+                    { time: '18:00–19:30', activity: '🥋 Тренировка', type: 'content' },
+                    { time: '19:30–20:00', activity: '🍽️ Ужин / семья', type: 'family' },
+                    { time: '20:00–21:00', activity: 'Стартап — легкая работа', type: 'work' },
                     { time: '21:00–22:30', activity: 'Семья / Подготовка ко сну', type: 'family' },
-                    { time: '22:30–05:30', activity: '😴 Сон / Отдых', type: 'family' },
+                    { time: '22:30–05:30', activity: '😴 Сон / отдых', type: 'family' },
                 ]
             ]))
         };
@@ -346,14 +346,18 @@
 
             const [categories, setCategories] = useState(() => {
                 const saved = localStorage.getItem('planner_categories');
-                return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+                const version = localStorage.getItem('planner_version');
+                if (!saved || version !== '3') {
+                    return INITIAL_CATEGORIES;
+                }
+                return JSON.parse(saved);
             });
 
             const [routine, setRoutine] = useState(() => {
                 const saved = localStorage.getItem('planner_routine');
                 const version = localStorage.getItem('planner_version');
-                if (!saved || version !== '2') {
-                    localStorage.setItem('planner_version', '2');
+                if (!saved || version !== '3') {
+                    localStorage.setItem('planner_version', '3');
                     return DEFAULT_ROUTINE;
                 }
                 return JSON.parse(saved);
