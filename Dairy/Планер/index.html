@@ -634,12 +634,25 @@
                                         return (
                                             <div 
                                                 key={key} 
-                                                onClick={() => { setSelectedDate(date); setViewMode('week'); }}
-                                                className={`bg-white calendar-day p-3 cursor-pointer border border-emerald-50 relative group ${isToday ? 'bg-emerald-50' : 'hover:bg-amber-50/30'}`}
+                                                className={`bg-white calendar-day p-2 border border-emerald-50 relative group ${isToday ? 'bg-emerald-50' : 'hover:bg-amber-50/10'}`}
                                             >
-                                                <span className={`text-sm font-black ${isToday ? 'text-white bg-emerald-700 px-2 py-1 rounded-lg shadow-md' : 'text-emerald-800/40 group-hover:text-emerald-700'}`}>{date.getDate()}</span>
-                                                <div className="mt-2">
-                                                    {hasIhsan && <div className="text-[9px] font-bold text-emerald-900 bg-amber-100 p-1 rounded border border-amber-200 truncate">⚜️ {hasIhsan}</div>}
+                                                <div className="flex justify-between items-start mb-1">
+                                                    <span 
+                                                        onClick={() => { setSelectedDate(date); setViewMode('week'); }}
+                                                        className={`text-sm font-black cursor-pointer transition-all hover:scale-110 ${isToday ? 'text-white bg-emerald-700 px-2 py-1 rounded-lg shadow-md' : 'text-emerald-800/40 hover:text-emerald-700'}`}
+                                                    >
+                                                        {date.getDate()}
+                                                    </span>
+                                                    {isToday && <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping mt-2 mr-1"></div>}
+                                                </div>
+                                                
+                                                <div className="h-full" onClick={(e) => e.stopPropagation()}>
+                                                    <textarea 
+                                                        value={dayData[key]?.ihsan || ''}
+                                                        onChange={(e) => updateDayValue(key, 'ihsan', e.target.value)}
+                                                        className="w-full bg-transparent border-none text-[10px] leading-tight font-bold text-emerald-900 placeholder:text-emerald-800/10 resize-none p-0 focus:ring-0 h-[60px] scrollbar-hide"
+                                                        placeholder="Ихсан дня..."
+                                                    />
                                                 </div>
                                             </div>
                                         );
