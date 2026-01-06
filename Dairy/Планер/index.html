@@ -255,6 +255,14 @@
             }
         ];
 
+        const PRAYERS = [
+            { id: 'fajr', name: 'Фаджр' },
+            { id: 'dhuhr', name: 'Зухр' },
+            { id: 'asr', name: 'Аср' },
+            { id: 'maghrib', name: 'Магриб' },
+            { id: 'isha', name: 'Иша' }
+        ];
+
         const COLOR_PRESETS = {
             emerald: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-900', dot: 'bg-emerald-600' },
             amber: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-900', dot: 'bg-amber-500' },
@@ -376,6 +384,23 @@
                 }));
             };
 
+            const togglePrayer = (dateKey, prayerId) => {
+                setDayData(prev => {
+                    const day = prev[dateKey] || {};
+                    const prayers = day.prayers || {};
+                    return {
+                        ...prev,
+                        [dateKey]: {
+                            ...day,
+                            prayers: {
+                                ...prayers,
+                                [prayerId]: !prayers[prayerId]
+                            }
+                        }
+                    };
+                });
+            };
+
             return (
                 <div className="max-w-6xl mx-auto p-4 md:p-8">
                     {/* Header */}
@@ -442,6 +467,31 @@
                                 }} className="p-3 hover:bg-emerald-50 rounded-2xl text-emerald-700 transition-colors"><ChevronRight /></button>
                             </div>
 
+                            <div className="bg-white/80 rounded-2xl p-2 flex items-center justify-center gap-1 md:gap-2 border border-emerald-100 shadow-sm">
+                                {PRAYERS.map(prayer => {
+                                    const dateKey = formatDateKey(selectedDate);
+                                    const isDone = dayData[dateKey]?.prayers?.[prayer.id];
+                                    return (
+                                        <button
+                                            key={prayer.id}
+                                            onClick={() => togglePrayer(dateKey, prayer.id)}
+                                            className={`flex items-center gap-2 px-3 py-1.5 rounded-xl transition-all ${
+                                                isDone 
+                                                ? 'bg-emerald-700 text-white shadow-sm' 
+                                                : 'text-emerald-800 hover:bg-emerald-50'
+                                            }`}
+                                        >
+                                            <div className={`w-2.5 h-2.5 rounded-full border-2 transition-all ${
+                                                isDone 
+                                                ? 'bg-white border-white' 
+                                                : 'border-emerald-300 group-hover:border-emerald-500'
+                                            }`}></div>
+                                            <span className="text-[10px] font-black uppercase tracking-widest">{prayer.name}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
                             <div className="grid lg:grid-cols-12 gap-8">
                                 {/* Left column: Spiritual Goals */}
                                 <div className="lg:col-span-5 space-y-4">
@@ -463,7 +513,7 @@
                                                         value={dayData[formatDateKey(selectedDate)]?.[cat.id] || ''}
                                                         onChange={(val) => updateDayValue(formatDateKey(selectedDate), cat.id, val)}
                                                         placeholder={cat.label}
-                                                        className="px-4 bg-emerald-50/50 border-2 border-transparent focus:border-amber-400 focus:bg-white rounded-2xl text-sm font-medium text-emerald-950 outline-none transition-all placeholder:text-emerald-200"
+                                                        className="px-4 bg-emerald-50/50 border-2 border-transparent focus:border-amber-400 focus:bg-white rounded-2xl text-sm font-medium text-emerald-950 outline-none transition-all placeholder:text-slate-400"
                                                     />
                                                 </div>
                                             ))}
