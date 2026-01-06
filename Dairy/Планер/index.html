@@ -601,10 +601,10 @@
             return (
                 <div className="max-w-6xl mx-auto p-4 md:p-8">
                     {/* Обложка / Cover */}
-                    <div className="mb-8 rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-b-8 border-emerald-700 animate-fade-in relative group">
+                    <div className="mb-6 rounded-[2rem] overflow-hidden shadow-xl bg-white border-b-4 border-emerald-700 animate-fade-in relative group">
                         <img 
                             src="IMANotes_Big_Logo.png" 
-                            className="w-full max-h-[300px] object-contain mx-auto py-6 transform transition-transform duration-700 group-hover:scale-105" 
+                            className="w-full max-h-[160px] md:max-h-[200px] object-contain mx-auto py-4 transform transition-transform duration-700 group-hover:scale-105" 
                             alt="IMANotes Cover" 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/5 to-transparent pointer-events-none"></div>
@@ -654,10 +654,7 @@
                                     <span className="text-xl md:text-2xl font-black text-white leading-none">{currentDayNumber}</span>
                                 </div>
                                 <div className="flex-1">
-                                    <h1 className="text-xl md:text-3xl font-black text-emerald-900 tracking-tight leading-tight flex items-center gap-3">
-                                        <img src="IMANotes_Big_Logo.png" className="w-8 h-8 md:w-12 md:h-12 object-contain shrink-0" alt="Logo" />
-                                        Начни день с Бисмиллях
-                                    </h1>
+                                    <h1 className="text-xl md:text-3xl font-black text-emerald-900 tracking-tight leading-tight">Начни день с Бисмиллях</h1>
                                     <p className="text-[11px] md:text-sm text-emerald-700 font-bold italic opacity-90 leading-snug">{motivationForDay}</p>
                                 </div>
                             </div>
