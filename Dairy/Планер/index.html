@@ -600,13 +600,14 @@
 
             return (
                 <div className="max-w-6xl mx-auto p-4 md:p-8">
-                    {/* Обложка / Logo */}
-                    <div className="mb-8 flex justify-center animate-fade-in">
+                    {/* Обложка / Cover */}
+                    <div className="mb-4 rounded-3xl overflow-hidden shadow-md bg-white border-b-2 border-emerald-700/30 animate-fade-in relative group max-w-2xl mx-auto">
                         <img 
                             src="IMANotes_logo.png" 
-                            className="h-16 md:h-24 w-auto object-contain drop-shadow-sm" 
-                            alt="IMANotes Logo" 
+                            className="w-full max-h-[80px] md:max-h-[100px] object-contain mx-auto py-2 transform transition-transform duration-700 group-hover:scale-105" 
+                            alt="IMANotes Cover" 
                         />
+                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/5 to-transparent pointer-events-none"></div>
                     </div>
 
                     {/* Header Section with Layered Tab */}
